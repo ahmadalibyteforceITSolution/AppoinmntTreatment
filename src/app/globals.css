@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  
+  --color-primary: #0d9488;
+  --color-secondary: #C5A059;
+  --color-accent: #f59e0b;
+  --color-luxury-gold: #d4af37;
+  --color-luxury-dark: #1a1a1a;
+  
+  --shadow-luxury: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom utilities for luxury feel */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #d4af37 0%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-border {
+  border-image: linear-gradient(to right, #d4af37, #C5A059) 1;
+}
