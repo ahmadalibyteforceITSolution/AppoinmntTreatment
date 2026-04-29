@@ -61,10 +61,10 @@ const Hero = () => {
             {/* Using a placeholder for now, but will suggest generating an image */}
             <div className="w-full h-full bg-slate-200 flex items-center justify-center relative">
               <Image 
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=800" 
+                src="/faiza.jpg" 
                 alt="Dr. Faiza Hafeez"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
                 priority
               />
             </div>
