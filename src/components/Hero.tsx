@@ -64,7 +64,7 @@ const Hero = () => {
                 src="/faiza.jpg" 
                 alt="Dr. Faiza Hafeez"
                 fill
-                className="object-cover object-top"
+                className="object-cover"
                 priority
               />
             </div>
