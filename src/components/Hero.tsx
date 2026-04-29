@@ -59,12 +59,12 @@ const Hero = () => {
         <div className="relative animate-in fade-in slide-in-from-right duration-1000 delay-200">
           <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white">
             {/* Using a placeholder for now, but will suggest generating an image */}
-            <div className="w-full h-full bg-slate-200 flex items-center justify-center relative">
+            <div className="w-full h-full bg-slate-200 flex items-center justify-center relative overflow-hidden rounded-[32px]">
               <Image 
                 src="/faiza.jpg" 
                 alt="Dr. Faiza Hafeez"
                 fill
-                className="object-cover"
+                className="object-cover scale-[1.15] origin-bottom"
                 priority
               />
             </div>
