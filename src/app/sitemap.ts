@@ -2,7 +2,7 @@ import { blogs } from "@/data/blogs";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://faiza-hafeez-clinic.vercel.app";
+  const baseUrl = "https://appoinmnt-treatment.vercel.app";
 
   const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
     url: `${baseUrl}/blogs/${blog.slug}`,
