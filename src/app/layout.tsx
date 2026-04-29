@@ -19,6 +19,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  manifest: "/manifest.json",
+  themeColor: "#0ea5e9",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Faiza Clinic",
+  },
   openGraph: {
     title: "Dr. Faiza Hafeez | Premium Medical Specialist",
     description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments.",

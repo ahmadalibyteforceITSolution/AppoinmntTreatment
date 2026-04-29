@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Clock, CheckCircle2, DollarSign, User, ShieldPlus } from "lucide-react";
+import { Clock, CheckCircle2, DollarSign, User, ShieldPlus, Loader2 } from "lucide-react";
+import Link from "next/link";
 
 const packages = [
   {
@@ -37,7 +38,35 @@ const schedules = [
 ];
 
 const AppointmentScheduler = () => {
-  const [selectedPkg, setSelectedPkg] = useState(1);
+  const [phone, setPhone] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFastTrack = async () => {
+    if (!phone) return alert("Please enter your phone number");
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: "Fast-Track Booking Request",
+          phone: phone,
+          message: "Patient requested a fast-track callback from the Pricing & Schedule section."
+        }),
+      });
+
+      if (response.ok) {
+        alert("Request sent! We will call you shortly.");
+        setPhone("");
+      } else {
+        alert("Failed to send request. Please try again.");
+      }
+    } catch (error) {
+      alert("Network error.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <section className="py-24 bg-slate-50">
@@ -55,7 +84,7 @@ const AppointmentScheduler = () => {
           {packages.map((pkg, idx) => (
             <div 
               key={idx}
-              className={`relative p-8 rounded-3xl transition-all duration-300 ${
+              className={`relative p-8 rounded-3xl transition-all duration-300 flex flex-col ${
                 pkg.recommended 
                 ? "bg-slate-950 text-white scale-105 shadow-2xl z-10" 
                 : "bg-white text-slate-900 border border-slate-100 hover:shadow-xl"
@@ -79,7 +108,7 @@ const AppointmentScheduler = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-10">
+              <ul className="space-y-4 mb-10 flex-1">
                 {pkg.features.map((feat, fIdx) => (
                   <li key={fIdx} className="flex items-start gap-3 text-sm">
                     <CheckCircle2 size={18} className={pkg.recommended ? "text-secondary" : "text-primary"} />
@@ -88,13 +117,13 @@ const AppointmentScheduler = () => {
                 ))}
               </ul>
 
-              <button className={`w-full py-4 rounded-xl font-bold transition-all ${
+              <Link href="/appointments" className={`w-full py-4 rounded-xl font-bold text-center transition-all ${
                 pkg.recommended 
                 ? "bg-secondary text-slate-900 hover:bg-white" 
                 : "bg-primary text-white hover:bg-primary/90"
               }`}>
                 Select Package
-              </button>
+              </Link>
             </div>
           ))}
         </div>
@@ -159,10 +188,17 @@ const AppointmentScheduler = () => {
               <div className="flex gap-2">
                 <input 
                   type="tel" 
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                   placeholder="Enter your phone number" 
                   className="flex-1 px-6 py-4 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
-                <button className="px-8 py-4 bg-slate-950 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors">
+                <button 
+                  onClick={handleFastTrack}
+                  disabled={isLoading}
+                  className="px-8 py-4 bg-slate-950 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
+                >
+                  {isLoading ? <Loader2 size={16} className="animate-spin" /> : null}
                   Request Call
                 </button>
               </div>
