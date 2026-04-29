@@ -26,7 +26,7 @@ export default function PrivacyPage() {
           <p>Your medical records and consultation details are strictly confidential and are protected under medical privacy laws. We do not share your health information without your explicit consent.</p>
           
           <h2>4. Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact us at contact@drfaizahafeez.com.</p>
+          <p>If you have any questions about this Privacy Policy, please contact us at faizahafeez28@gmail.com.</p>
         </div>
       </section>
 

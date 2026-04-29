@@ -92,7 +92,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-bold text-slate-900 text-lg">Email Address</h3>
-                  <p className="text-slate-600 mt-1">contact@drfaizahafeez.com</p>
+                  <p className="text-slate-600 mt-1">faizahafeez28@gmail.com</p>
                   <p className="text-sm text-slate-500 mt-1">We aim to reply within 24 hours</p>
                 </div>
               </div>

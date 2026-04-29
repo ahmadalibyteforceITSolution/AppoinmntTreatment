@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Clock, CheckCircle2, DollarSign, User, ShieldPlus, Loader2 } from "lucide-react";
 import Link from "next/link";
+import Swal from "sweetalert2";
 
 const packages = [
   {
@@ -42,7 +43,7 @@ const AppointmentScheduler = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFastTrack = async () => {
-    if (!phone) return alert("Please enter your phone number");
+    if (!phone) return Swal.fire("Required", "Please enter your phone number.", "warning");
     setIsLoading(true);
     try {
       const response = await fetch("/api/contact", {
@@ -56,13 +57,13 @@ const AppointmentScheduler = () => {
       });
 
       if (response.ok) {
-        alert("Request sent! We will call you shortly.");
+        Swal.fire("Request Sent!", "We will call you shortly.", "success");
         setPhone("");
       } else {
-        alert("Failed to send request. Please try again.");
+        Swal.fire("Oops!", "Failed to send request. Please try again.", "error");
       }
     } catch (error) {
-      alert("Network error.");
+      Swal.fire("Error", "Network error. Please try again.", "error");
     } finally {
       setIsLoading(false);
     }

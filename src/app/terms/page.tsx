@@ -26,7 +26,7 @@ export default function TermsPage() {
           <p>Please provide at least 24 hours notice if you need to cancel or reschedule your appointment. Late cancellations may be subject to a fee.</p>
           
           <h2>4. Contact Us</h2>
-          <p>If you have any questions about these Terms, please contact us at contact@drfaizahafeez.com.</p>
+          <p>If you have any questions about these Terms, please contact us at faizahafeez28@gmail.com.</p>
         </div>
       </section>
 
