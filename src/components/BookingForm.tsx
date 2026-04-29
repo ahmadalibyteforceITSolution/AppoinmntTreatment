@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Calendar, User, Phone, MessageSquare, Loader2 } from "lucide-react";
+import { Calendar, User, Phone, MessageSquare, Loader2 } from "lucide-react";
+import Swal from "sweetalert2";
 
 const BookingForm = () => {
-  const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -31,7 +31,12 @@ const BookingForm = () => {
       });
 
       if (response.ok) {
-        setSubmitted(true);
+        Swal.fire({
+          icon: 'success',
+          title: 'Appointment Requested!',
+          text: 'Thank you for choosing Dr. Faiza Hafeez. Our reception team will call you within 15 minutes to confirm your slot.',
+          confirmButtonColor: '#0ea5e9'
+        });
         setFormData({
           fullName: "",
           phone: "",
@@ -40,36 +45,15 @@ const BookingForm = () => {
           message: ""
         });
       } else {
-        alert("Something went wrong. Please try again.");
+        Swal.fire("Oops!", "Something went wrong. Please try again.", "error");
       }
     } catch (error) {
       console.error("Booking error:", error);
-      alert("Failed to connect to the server.");
+      Swal.fire("Error", "Failed to connect to the server.", "error");
     } finally {
       setIsLoading(false);
     }
   };
-
-  if (submitted) {
-    return (
-      <div className="bg-white p-12 rounded-[40px] shadow-2xl text-center space-y-6 animate-in zoom-in duration-500">
-        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-          <CheckCircle size={48} />
-        </div>
-        <h3 className="text-3xl font-serif font-bold text-slate-950">Appointment Requested!</h3>
-        <p className="text-slate-600">
-          Thank you for choosing Dr. Faiza Hafeez. Our reception team will call you 
-          within 15 minutes to confirm your slot.
-        </p>
-        <button 
-          onClick={() => setSubmitted(false)}
-          className="text-primary font-bold hover:underline"
-        >
-          Book another appointment
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl border border-slate-100">

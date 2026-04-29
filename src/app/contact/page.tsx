@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { Mail, Phone, MapPin, Loader2, CheckCircle } from "lucide-react";
+import Swal from "sweetalert2";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,7 +14,6 @@ export default function ContactPage() {
     message: ""
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -32,14 +32,19 @@ export default function ContactPage() {
       });
 
       if (response.ok) {
-        setSubmitted(true);
+        Swal.fire({
+          icon: 'success',
+          title: 'Message Sent!',
+          text: 'We have received your inquiry and will get back to you shortly.',
+          confirmButtonColor: '#0ea5e9'
+        });
         setFormData({ fullName: "", phone: "", message: "" });
       } else {
-        alert("Something went wrong. Please try again.");
+        Swal.fire("Oops!", "Something went wrong. Please try again.", "error");
       }
     } catch (error) {
       console.error("Contact error:", error);
-      alert("Failed to connect to the server.");
+      Swal.fire("Error", "Failed to connect to the server.", "error");
     } finally {
       setIsLoading(false);
     }
@@ -99,22 +104,6 @@ export default function ContactPage() {
             </div>
 
             <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-xl border border-slate-100">
-              {submitted ? (
-                <div className="text-center py-10 animate-in zoom-in duration-500">
-                  <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle size={32} />
-                  </div>
-                  <h3 className="text-2xl font-serif font-bold text-slate-950 mb-2">Message Sent!</h3>
-                  <p className="text-slate-600 mb-8">We will get back to you as soon as possible.</p>
-                  <button 
-                    onClick={() => setSubmitted(false)}
-                    className="text-primary font-bold hover:underline"
-                  >
-                    Send another message
-                  </button>
-                </div>
-              ) : (
-                <>
                   <h3 className="text-2xl font-serif font-bold text-slate-950 mb-8">Send us a Message</h3>
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
@@ -165,8 +154,6 @@ export default function ContactPage() {
                       )}
                     </button>
                   </form>
-                </>
-              )}
             </div>
           </div>
         </div>
