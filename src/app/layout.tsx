@@ -12,6 +12,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+export const viewport = {
+  themeColor: "#0ea5e9",
+};
+
 export const metadata: Metadata = {
   title: "Dr. Faiza Hafeez | Premium Medical Specialist & Appointments",
   description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments. Book your appointment at Lahore's premier medical clinic.",
@@ -20,7 +24,6 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   manifest: "/manifest.json",
-  themeColor: "#0ea5e9",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
