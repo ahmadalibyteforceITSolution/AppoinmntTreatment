@@ -186,7 +186,7 @@ const AppointmentScheduler = () => {
             
             <div className="pt-6">
               <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold mb-4">Fast-Track Booking</p>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input 
                   type="tel" 
                   value={phone}
@@ -197,7 +197,7 @@ const AppointmentScheduler = () => {
                 <button 
                   onClick={handleFastTrack}
                   disabled={isLoading}
-                  className="px-8 py-4 bg-slate-950 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
+                  className="px-8 py-4 bg-slate-950 text-white rounded-xl font-bold text-sm hover:bg-slate-800 transition-colors disabled:opacity-70 flex items-center justify-center gap-2 whitespace-nowrap"
                 >
                   {isLoading ? <Loader2 size={16} className="animate-spin" /> : null}
                   Request Call
