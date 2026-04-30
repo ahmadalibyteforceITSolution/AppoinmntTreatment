@@ -60,12 +60,11 @@ export default function RootLayout({
       <body
         className="min-h-full flex flex-col font-sans bg-white text-slate-900"
       >
-        <Script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1888138480311828"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        ></script>
         {children}
       </body>
     </html>
