@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dr. Faiza Hafeez | Premium Medical Specialist",
     description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments.",
-    url: "https://faiza-hafeez-clinic.vercel.app",
+    url: "https://appoinmnt-treatment.vercel.app",
     siteName: "Dr. Faiza Hafeez Clinic",
     locale: "en_US",
     type: "website",

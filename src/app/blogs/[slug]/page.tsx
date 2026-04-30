@@ -12,6 +12,12 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
 export default async function BlogPost({ params }: Props) {
   const { slug } = await params;
   const blog = blogs.find(b => b.slug === slug);
