@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -56,6 +57,12 @@ export default function RootLayout({
       <body
         className="min-h-full flex flex-col font-sans bg-white text-slate-900"
       >
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1888138480311828"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         {children}
       </body>
     </html>

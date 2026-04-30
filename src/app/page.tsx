@@ -7,6 +7,7 @@ import BlogSection from "@/components/BlogSection";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Image from "next/image";
+import AdUnit from "@/components/AdUnit";
 
 export default function Home() {
   return (
@@ -65,6 +66,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AdUnit slot="0987654321" />
 
       <BookingListing />
       <AppointmentScheduler />

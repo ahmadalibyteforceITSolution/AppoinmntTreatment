@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AdUnit from "@/components/AdUnit";
 
 // In Next.js 15, params is a Promise
 type Props = {
@@ -101,6 +102,15 @@ export default async function BlogPost({ params }: Props) {
                   "Health is not merely the absence of disease, but a state of complete physical, mental, and social wellbeing. 
                   Start prioritizing your heart and reproductive health today."
                 </p>
+              </div>
+
+              {/* Ad Unit after content */}
+              <AdUnit slot="1234567890" />
+              
+              {/* Multiplex Ad Unit */}
+              <div className="mt-12 pt-8 border-t border-slate-100">
+                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Recommended for you</h4>
+                <AdUnit slot="1788948754" format="autorelaxed" />
               </div>
             </div>
           </div>
