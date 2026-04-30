@@ -17,6 +17,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://appoinmnt-treatment.vercel.app"),
   title: "Dr. Faiza Hafeez | Premium Medical Specialist & Appointments",
   description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments. Book your appointment at Lahore's premier medical clinic.",
   keywords: "Dr. Faiza Hafeez, Cardiology Lahore, Gynecology Lahore, Hameed Latif Hospital specialists, Ittefaq Hospital specialists, Medical Appointments Lahore, Nursing Schedule, Heart Specialist Pakistan",
