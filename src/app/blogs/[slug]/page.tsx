@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Calendar, User, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import AdUnit from "@/components/AdUnit";
+import AdUnit from "../../../components/AdUnit";
 
 // In Next.js 15, params is a Promise
 type Props = {
@@ -116,7 +116,7 @@ export default async function BlogPost({ params }: Props) {
           </div>
           
           <div className="mt-16 pt-12 border-t border-slate-100">
-            <div className="flex flex-col md:row justify-between items-center gap-8 bg-slate-950 p-10 rounded-[40px] text-white">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-950 p-10 rounded-[40px] text-white">
               <div className="space-y-4">
                 <h4 className="text-2xl font-serif font-bold">Book a Consultation</h4>
                 <p className="text-slate-400">Discuss your health concerns with Dr. Faiza Hafeez today.</p>
