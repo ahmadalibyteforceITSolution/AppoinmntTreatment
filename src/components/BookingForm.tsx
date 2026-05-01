@@ -31,6 +31,14 @@ const BookingForm = () => {
       });
 
       if (response.ok) {
+        // Construct WhatsApp message
+        const whatsappNumber = "923344280522";
+        const text = `Hello Dr. Faiza, I would like to book an appointment:\n\n*Name:* ${formData.fullName}\n*Phone:* ${formData.phone}\n*Specialty:* ${formData.specialty}\n*Preferred Date:* ${formData.preferredDate}\n*Message:* ${formData.message || "N/A"}`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        
+        // Open WhatsApp in a new tab
+        window.open(whatsappUrl, '_blank');
+
         Swal.fire({
           icon: 'success',
           title: 'Appointment Requested!',

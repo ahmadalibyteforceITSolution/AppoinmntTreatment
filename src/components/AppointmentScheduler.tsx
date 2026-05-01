@@ -57,6 +57,14 @@ const AppointmentScheduler = () => {
       });
 
       if (response.ok) {
+        // Construct WhatsApp message
+        const whatsappNumber = "923344280522";
+        const text = `Hello Dr. Faiza, I would like to request a fast-track callback:\n\n*Phone:* ${phone}\n*Request:* Fast-Track Callback from Schedule Section`;
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+        
+        // Open WhatsApp in a new tab
+        window.open(whatsappUrl, '_blank');
+
         Swal.fire("Request Sent!", "We will call you shortly.", "success");
         setPhone("");
       } else {
