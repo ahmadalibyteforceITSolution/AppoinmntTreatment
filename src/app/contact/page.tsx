@@ -34,7 +34,7 @@ export default function ContactPage() {
       if (response.ok) {
         // Construct WhatsApp message
         const whatsappNumber = "923344280522";
-        const text = `Hello Dr. Faiza, I have a new inquiry:\n\n*Name:* ${formData.fullName}\n*Phone:* ${formData.phone}\n*Message:* ${formData.message}`;
+        const text = `Hello Dr. Faiza, I have a new inquiry:\n\n*Name:* *${formData.fullName}*\n*Phone:* *${formData.phone}*\n*Message:* *${formData.message}*`;
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
         
         // Open WhatsApp in a new tab

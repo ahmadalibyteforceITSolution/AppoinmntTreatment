@@ -62,7 +62,7 @@ const BookingListing = () => {
     }
 
     const whatsappNumber = "923344280522";
-    const text = `Hello Dr. Faiza, I would like to book a treatment:\n\n*Treatment:* ${treatmentName}\n*Preferred Date:* ${selectedDate}\n\nPlease confirm my appointment.`;
+    const text = `Hello Dr. Faiza, I would like to book a treatment:\n\n*Treatment:* *${treatmentName}*\n*Preferred Date:* *${selectedDate}*\n\nPlease confirm my appointment.`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
     
     window.open(whatsappUrl, '_blank');
