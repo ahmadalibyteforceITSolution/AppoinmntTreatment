@@ -4,11 +4,19 @@ export default function robots(): MetadataRoute.Robots {
   const baseUrl = "https://appoinmnt-treatment.vercel.app";
   
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-      disallow: "/api/",
-    },
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/api/"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/"],
+      }
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
+

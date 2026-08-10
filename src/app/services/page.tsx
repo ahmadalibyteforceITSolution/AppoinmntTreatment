@@ -9,11 +9,17 @@ export default function ServicesPage() {
     <main className="bg-slate-50 min-h-screen">
       <Navbar />
       
-      <section className="pt-32 pb-20 bg-primary text-white text-center">
-        <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-5xl md:text-6xl font-serif font-bold mb-6">Our Medical Specialties</h1>
-          <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Comprehensive healthcare solutions provided by experienced specialists using state-of-the-art medical technology.
+      <section className="pt-36 pb-20 bg-slate-950 text-white text-center relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-pink-900/60 text-pink-300 text-xs font-bold uppercase tracking-widest border border-pink-700/50">
+            Consultant Medical Disciplines
+          </span>
+          <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
+            Gynecology & Obstetrics Specialties
+          </h1>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+            Personalized, evidence-based treatments for pregnancy, fertility, PCOS, ultrasound diagnostics, and surgical gynecology.
           </p>
         </div>
       </section>
@@ -26,3 +32,4 @@ export default function ServicesPage() {
     </main>
   );
 }
+

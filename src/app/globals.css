@@ -4,45 +4,62 @@
   --font-sans: var(--font-inter);
   --font-serif: var(--font-playfair);
   
-  --color-primary: #0d9488;
-  --color-secondary: #C5A059;
-  --color-accent: #f59e0b;
+  --color-primary: #db2777;
+  --color-primary-dark: #be185d;
+  --color-secondary: #9d174d;
+  --color-accent: #f43f5e;
+  --color-rose-light: #fdf2f8;
+  --color-rose-soft: #fff1f2;
   --color-luxury-gold: #d4af37;
-  --color-luxury-dark: #1a1a1a;
+  --color-luxury-dark: #0f172a;
   
-  --shadow-luxury: 0 10px 30px -10px rgba(0, 0, 0, 0.1);
+  --shadow-luxury: 0 10px 30px -10px rgba(219, 39, 119, 0.15);
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0f172a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f8fafc;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
 }
 
-/* Custom utilities for luxury feel */
+/* Custom utilities for luxury women's health aesthetic */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(251, 207, 232, 0.4);
+}
+
+.glass-rose {
+  background: rgba(253, 242, 248, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(244, 63, 94, 0.2);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #d4af37 0%, #C5A059 100%);
+  background: linear-gradient(135deg, #db2777 0%, #9d174d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.gold-border {
-  border-image: linear-gradient(to right, #d4af37, #C5A059) 1;
+.text-gradient-gold {
+  background: linear-gradient(135deg, #d4af37 0%, #b48c1a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.rose-border {
+  border-image: linear-gradient(to right, #db2777, #f43f5e) 1;
+}
+

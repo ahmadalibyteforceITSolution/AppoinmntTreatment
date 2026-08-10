@@ -3,19 +3,26 @@ import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AppointmentScheduler from "@/components/AppointmentScheduler";
 import BookingForm from "@/components/BookingForm";
 import Footer from "@/components/Footer";
+
 export default function AppointmentsPage() {
   return (
-    <main>
+    <main className="bg-white min-h-screen">
       <Navbar />
       <div className="pt-20">
-        <section className="py-20 bg-primary text-white text-center">
-          <div className="max-w-4xl mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-serif font-bold mb-4">Book Your Appointment</h1>
-            <p className="text-white/80">Schedule a visit with Dr. Faiza Hafeez. Your health is our priority.</p>
+        <section className="py-20 bg-slate-950 text-white text-center relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-3">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-pink-900/60 text-pink-300 text-xs font-bold uppercase tracking-widest border border-pink-700/50">
+              Online Appointment Portal
+            </span>
+            <h1 className="text-4xl md:text-5xl font-serif font-bold">Book Your Gynecology Consultation</h1>
+            <p className="text-slate-300 text-sm max-w-xl mx-auto">
+              Schedule your visit with Dr. Faiza Hafeez (FCPS Gynecology & Obstetrics). Confidential, expert maternal care in Lahore.
+            </p>
           </div>
         </section>
 
-        <section className="py-20 bg-slate-50">
+        <section className="py-20 bg-gradient-to-b from-rose-50/30 to-white">
           <div className="max-w-4xl mx-auto px-4">
             <BookingForm />
           </div>
@@ -24,25 +31,25 @@ export default function AppointmentsPage() {
         <AppointmentScheduler />
 
         <section className="py-20 bg-white">
-          <div className="max-w-3xl mx-auto px-4 text-center space-y-8">
-            <h2 className="text-3xl font-serif font-bold text-slate-950">Need Help?</h2>
-            <p className="text-slate-600">
-              If you have trouble booking online or have an emergency, please contact
-              our reception immediately at <strong>0334 4280522</strong>.
+          <div className="max-w-3xl mx-auto px-4 text-center space-y-6 bg-rose-50/50 border border-pink-100 p-10 rounded-[36px]">
+            <h2 className="text-3xl font-serif font-bold text-slate-950">Urgent Pregnancy Assistance?</h2>
+            <p className="text-slate-600 text-sm max-w-lg mx-auto">
+              If you require emergency delivery support or immediate obstetrics guidance, please call our emergency hotline directly.
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
               <a
                 href="tel:03344280522"
-                className="px-8 py-4 bg-slate-950 text-white rounded-full font-bold hover:bg-slate-800 transition-all"
+                className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold text-sm hover:bg-slate-800 transition-all shadow-md"
               >
-                Call Now
+                Call +92 334 4280522
               </a>
               <a
                 href="https://wa.me/923344280522"
                 target="_blank"
-                className="px-8 py-4 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all"
+                rel="noopener noreferrer"
+                className="px-8 py-4 bg-emerald-600 text-white rounded-full font-bold text-sm hover:bg-emerald-500 transition-all shadow-md"
               >
-                WhatsApp Us
+                WhatsApp Emergency Chat
               </a>
             </div>
           </div>
@@ -53,3 +60,4 @@ export default function AppointmentsPage() {
     </main>
   );
 }
+

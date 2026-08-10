@@ -2,50 +2,54 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Heart } from "lucide-react";
 import { notFound } from "next/navigation";
 
-// Define the services data to populate the dynamic pages
 const servicesData: Record<string, { title: string; description: string; features: string[] }> = {
-  cardiology: {
-    title: "Cardiology & Heart Care",
-    description: "State-of-the-art cardiovascular care including diagnostics, treatment, and ongoing management of heart conditions.",
-    features: ["ECG & Echocardiography", "Stress Testing", "Hypertension Management", "Preventive Cardiology Screenings"]
+  "high-risk-pregnancy": {
+    title: "High-Risk Pregnancy & Maternal Care",
+    description: "Expert maternal-fetal supervision for high-risk pregnancies, pre-eclampsia, gestational diabetes, multiple gestations, and previous miscarriage history.",
+    features: ["Continuous Fetal Wellbeing Doppler Scans", "Blood Pressure & Blood Sugar Control Protocols", "Pre-Term Labor Prevention Management", "24/7 Priority Hospital Admission Support"]
   },
   gynecology: {
-    title: "Gynecology & Obstetrics",
-    description: "Comprehensive women's health services from routine checkups to specialized maternal care.",
-    features: ["Prenatal & Postnatal Care", "High-Risk Pregnancy Management", "PCOS Treatment", "Routine Pelvic Exams"]
+    title: "Gynecology & Pelvic Health",
+    description: "Comprehensive women's pelvic healthcare including routine checkups, menstrual disorder therapy, fibroid management, and endometriosis care.",
+    features: ["Heavy & Irregular Period Therapy", "Uterine Fibroids & Ovarian Cyst Management", "Endometriosis & Pelvic Pain Relief", "Annual Well-Woman Health Checks"]
   },
-  pediatrics: {
-    title: "Pediatric Care",
-    description: "Compassionate and expert medical care for infants, children, and adolescents.",
-    features: ["Vaccinations & Immunizations", "Growth & Development Tracking", "Childhood Illness Treatment", "Nutritional Guidance"]
+  "infertility-treatment": {
+    title: "Infertility & Reproductive Wellness",
+    description: "Holistic fertility evaluations, ovulation stimulation, follicular ultrasound tracking, and personalized conception roadmaps.",
+    features: ["Hormonal Profile & Ovarian Reserve Assessment", "Follicular Tracking Ultrasound", "Tubal Patency Testing Guidance", "Couples Fertility Counseling"]
   },
-  orthopedics: {
-    title: "Orthopedic Surgery",
-    description: "Advanced treatments for bone, joint, and muscle conditions to restore mobility and reduce pain.",
-    features: ["Joint Replacement Consultations", "Fracture Management", "Sports Injury Treatment", "Arthritis Care"]
+  "3d-4d-ultrasound": {
+    title: "3D / 4D Fetal Anomaly Ultrasound",
+    description: "High-precision ultrasound scanning for detailed fetal organ development evaluation, anomaly screening, and live 4D baby imaging.",
+    features: ["1st Trimester Nuchal Translucency (NT) Scan", "18-22 Weeks Detailed Anomaly Screening", "Fetal Growth & Doppler Blood Flow Analysis", "High-Resolution Image Prints"]
   },
-  dermatology: {
-    title: "Dermatology & Skin",
-    description: "Expert care for all skin, hair, and nail conditions using the latest medical and cosmetic treatments.",
-    features: ["Acne & Eczema Treatment", "Skin Cancer Screening", "Cosmetic Dermatology", "Laser Treatments"]
+  "pcos-management": {
+    title: "PCOS / PCOD & Hormonal Management",
+    description: "Tailored medical and dietary interventions to manage Polycystic Ovary Syndrome, restore regular periods, and treat acne and hirsutism.",
+    features: ["Insulin Resistance & Metabolic Optimization", "Menstrual Cycle Regulation", "Hormonal Hair Loss & Skin Care Guidance", "Fertility Restoration for PCOS"]
   },
-  obstetrics: {
-    title: "Obstetrics",
-    description: "Personalized maternity care ensuring a safe and healthy journey to motherhood.",
-    features: ["Labor & Delivery Planning", "Fetal Monitoring", "Ultrasound Services", "Lactation Consulting"]
+  "laparoscopic-surgery": {
+    title: "Laparoscopic & Minimally Invasive Surgery",
+    description: "Advanced keyhole gynecological procedures offering minimal scarring, faster recovery, and shorter hospital stays.",
+    features: ["Laparoscopic Ovarian Cystectomy", "Keyhole Fibroid Removal (Myomectomy)", "Diagnostic & Operative Hysteroscopy", "Minimal Access Surgical Care"]
   },
-  "general-medicine": {
-    title: "General Medicine",
-    description: "Primary care for acute and chronic illnesses with a holistic approach.",
-    features: ["Annual Physicals", "Diabetes Management", "Respiratory Infections", "Thyroid Disorders"]
+  "cervical-screening": {
+    title: "Cervical Screening & Pap Smear Clinic",
+    description: "Preventive cervical health checkups, liquid-based Pap cytology, HPV DNA testing, and early pre-cancerous lesion care.",
+    features: ["Routine Pap Smear Cytology", "High-Risk HPV DNA Screening", "Colposcopy Evaluation Referral", "Cervical Health Counseling"]
   },
-  diagnostics: {
-    title: "Diagnostic Imaging",
-    description: "Advanced ultrasound and diagnostic services with precise reporting.",
-    features: ["Digital X-Rays", "Ultrasound Scans", "Laboratory Services", "Quick Result Turnaround"]
+  "postnatal-care": {
+    title: "Postnatal Care & Lactation Support",
+    description: "Supportive post-delivery checkups, incision healing care, newborn nursing guidance, and maternal emotional recovery.",
+    features: ["Post-C-Section & Perineal Wound Assessment", "Lactation & Latching Guidance", "Postpartum Depression & Mood Support", "Safe Post-Delivery Contraception"]
+  },
+  "menopause-wellness": {
+    title: "Menopause & Healthy Aging Clinic",
+    description: "Compassionate care for women transitioning through menopause, addressing hot flashes, osteoporosis prevention, and hormonal balance.",
+    features: ["Hormone Replacement Therapy (HRT) Counseling", "Bone Density (DEXA) Screening Guidance", "Urogenital Health & Dryness Relief", "Cardiovascular & Metabolic Health Checks"]
   }
 };
 
@@ -65,14 +69,18 @@ export default async function ServiceDetailPage({ params }: Props) {
     <main className="bg-white min-h-screen">
       <Navbar />
       
-      <section className="pt-32 pb-20 bg-slate-50">
+      <section className="pt-36 pb-20 bg-gradient-to-b from-rose-50/50 via-pink-50/20 to-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/services" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary mb-8 transition-colors font-medium">
+          <Link href="/services" className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 mb-8 transition-colors font-bold text-sm">
             <ArrowLeft size={18} />
-            Back to All Services
+            Back to All Gynecology Services
           </Link>
-          <h1 className="text-5xl font-serif font-bold text-slate-950 mb-6">{service.title}</h1>
-          <p className="text-xl text-slate-600 leading-relaxed">
+          <div className="flex items-center gap-2 mb-3">
+            <Heart size={18} className="fill-pink-600 text-pink-600" />
+            <span className="text-pink-600 font-bold uppercase tracking-widest text-xs">Specialized Care Protocol</span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold text-slate-950 mb-6">{service.title}</h1>
+          <p className="text-lg text-slate-600 leading-relaxed">
             {service.description}
           </p>
         </div>
@@ -80,27 +88,28 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-serif font-bold text-slate-950 mb-8">What We Offer</h2>
+          <h2 className="text-3xl font-serif font-bold text-slate-950 mb-8">What We Provide</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
             {service.features.map((feature, idx) => (
-              <div key={idx} className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-slate-100 shadow-sm">
-                <CheckCircle2 className="text-primary flex-shrink-0" size={24} />
-                <span className="font-medium text-slate-800 text-lg">{feature}</span>
+              <div key={idx} className="flex items-start gap-4 p-6 rounded-2xl bg-white border border-pink-100 shadow-sm hover:shadow-md transition-shadow">
+                <CheckCircle2 className="text-pink-600 flex-shrink-0 mt-1" size={22} />
+                <span className="font-semibold text-slate-800 text-base">{feature}</span>
               </div>
             ))}
           </div>
 
-          <div className="bg-slate-950 rounded-[40px] p-10 md:p-16 text-center text-white space-y-8">
-            <h3 className="text-3xl font-serif font-bold">Ready to book your consultation?</h3>
-            <p className="text-slate-400 max-w-xl mx-auto">
-              Our specialists in {service.title} are available for appointments. Book online or contact us via WhatsApp for immediate assistance.
+          <div className="bg-slate-900 rounded-[40px] p-10 md:p-14 text-center text-white space-y-6 shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />
+            <h3 className="text-3xl font-serif font-bold relative z-10">Ready to consult Dr. Faiza Hafeez?</h3>
+            <p className="text-slate-300 max-w-xl mx-auto text-sm leading-relaxed relative z-10">
+              Our clinic in Lahore is fully equipped to provide personalized consultation for {service.title}. Schedule online or connect instantly on WhatsApp.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/appointments" className="px-8 py-4 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all">
-                Book Appointment
+            <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2 relative z-10">
+              <Link href="/appointments" className="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-sm hover:bg-pink-500 transition-all shadow-lg shadow-pink-600/30">
+                Book Consultation
               </Link>
-              <a href="https://wa.me/923344280522" target="_blank" className="px-8 py-4 bg-green-500 text-white rounded-full font-bold hover:bg-green-600 transition-all">
-                WhatsApp Us
+              <a href="https://wa.me/923344280522" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-emerald-600 text-white rounded-full font-bold text-sm hover:bg-emerald-500 transition-all shadow-lg shadow-emerald-600/30">
+                WhatsApp Direct Message
               </a>
             </div>
           </div>
@@ -112,3 +121,4 @@ export default async function ServiceDetailPage({ params }: Props) {
     </main>
   );
 }
+

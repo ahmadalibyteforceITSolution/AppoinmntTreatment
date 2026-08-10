@@ -11,33 +11,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogEntries: MetadataRoute.Sitemap = blogs.map((blog) => ({
     url: `${baseUrl}/blogs/${blog.slug}`,
     lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
   }));
 
-  // Service pages
+  // Service pages (Gynecology & Women's Health specialties)
   const serviceSlugs = [
-    "cardiology", "gynecology", "pediatrics", "orthopedics", 
-    "dermatology", "obstetrics", "general-medicine", "diagnostics"
+    "gynecology",
+    "obstetrics",
+    "high-risk-pregnancy",
+    "infertility-treatment",
+    "3d-4d-ultrasound",
+    "pcos-management",
+    "laparoscopic-surgery",
+    "cervical-screening",
+    "postnatal-care",
+    "menopause-wellness"
   ];
 
   const serviceEntries: MetadataRoute.Sitemap = serviceSlugs.map((slug) => ({
     url: `${baseUrl}/services/${slug}`,
     lastModified: currentDate,
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
   }));
 
   // Static pages
   const routes = [
-    { path: "", priority: 1.0, freq: "yearly" as const },
-    { path: "/about", priority: 0.9, freq: "monthly" as const },
-    { path: "/blogs", priority: 0.9, freq: "monthly" as const },
-    { path: "/services", priority: 0.9, freq: "monthly" as const },
-    { path: "/appointments", priority: 0.9, freq: "monthly" as const },
-    { path: "/contact", priority: 0.9, freq: "monthly" as const },
-    { path: "/privacy", priority: 0.5, freq: "yearly" as const },
-    { path: "/terms", priority: 0.5, freq: "yearly" as const },
+    { path: "", priority: 1.0, freq: "daily" as const },
+    { path: "/about", priority: 0.9, freq: "weekly" as const },
+    { path: "/services", priority: 0.9, freq: "weekly" as const },
+    { path: "/appointments", priority: 0.95, freq: "daily" as const },
+    { path: "/blogs", priority: 0.85, freq: "daily" as const },
+    { path: "/contact", priority: 0.9, freq: "weekly" as const },
+    { path: "/privacy", priority: 0.4, freq: "monthly" as const },
+    { path: "/terms", priority: 0.4, freq: "monthly" as const },
   ];
   
   const staticPages: MetadataRoute.Sitemap = routes.map((route) => ({
@@ -53,3 +61,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...blogEntries,
   ];
 }
+

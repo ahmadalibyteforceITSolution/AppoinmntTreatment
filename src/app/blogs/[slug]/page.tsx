@@ -3,12 +3,11 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { blogs } from "@/data/blogs";
 import Image from "next/image";
-import { Calendar, User, ArrowLeft } from "lucide-react";
+import { Calendar, User, ArrowLeft, Heart } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdUnit from "../../../components/AdUnit";
 
-// In Next.js 15, params is a Promise
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -28,39 +27,39 @@ export default async function BlogPost({ params }: Props) {
   }
 
   return (
-    <main className="bg-white">
+    <main className="bg-white min-h-screen">
       <Navbar />
       
-      <article className="pt-32 pb-24">
+      <article className="pt-36 pb-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Link href="/blogs" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary mb-12 transition-colors font-medium">
+          <Link href="/blogs" className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 mb-10 transition-colors font-bold text-sm">
             <ArrowLeft size={18} />
-            Back to Blogs
+            Back to All Articles
           </Link>
           
-          <div className="space-y-6 mb-12">
+          <div className="space-y-6 mb-10">
             <div className="flex items-center gap-3">
-              <span className="bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-1 rounded-full">
+              <span className="bg-pink-100 text-pink-700 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-pink-200">
                 {blog.category}
               </span>
-              <span className="text-slate-400 text-sm">{blog.readTime}</span>
+              <span className="text-slate-400 text-sm font-medium">{blog.readTime}</span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-950 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-950 leading-tight">
               {blog.title}
             </h1>
-            <div className="flex items-center gap-6 text-slate-500 border-y border-slate-100 py-6">
+            <div className="flex items-center gap-6 text-slate-500 border-y border-pink-100 py-4 text-xs font-medium">
               <div className="flex items-center gap-2">
-                <Calendar size={18} />
+                <Calendar size={15} className="text-pink-500" />
                 <span>{blog.date}</span>
               </div>
               <div className="flex items-center gap-2">
-                <User size={18} />
-                <span>Dr. Faiza Hafeez</span>
+                <User size={15} className="text-pink-500" />
+                <span>Dr. Faiza Hafeez (FCPS Gynecologist)</span>
               </div>
             </div>
           </div>
           
-          <div className="relative aspect-video rounded-[40px] overflow-hidden mb-16 shadow-2xl">
+          <div className="relative aspect-video rounded-[36px] overflow-hidden mb-12 shadow-2xl border-4 border-white bg-pink-50">
             <Image 
               src={blog.image} 
               alt={blog.title} 
@@ -69,38 +68,33 @@ export default async function BlogPost({ params }: Props) {
             />
           </div>
           
-          <div className="prose prose-lg max-w-none prose-slate">
-            <p className="text-xl text-slate-600 font-medium mb-8 leading-relaxed italic">
+          <div className="prose prose-lg max-w-none prose-pink text-slate-700">
+            <p className="text-lg md:text-xl text-pink-900 font-semibold mb-8 leading-relaxed italic bg-rose-50/60 p-6 rounded-2xl border border-pink-100">
               {blog.excerpt}
             </p>
-            <div className="space-y-6 text-slate-700 leading-relaxed text-lg">
+            <div className="space-y-6 text-slate-700 leading-relaxed text-base">
               <p>
-                In today's fast-paced world, maintaining optimal health is more critical than ever. 
-                As a specialist focusing on {blog.category.toLowerCase()}, I often see patients who 
-                could have prevented serious complications with early diagnosis and simple lifestyle changes.
+                Women's health requires specialized, empathetic care at every stage of life. 
+                As a consultant specializing in {blog.category.toLowerCase()}, I frequently treat patients who benefit immensely from early diagnosis, proper screening, and personalized lifestyle adjustments.
               </p>
-              <h2 className="text-3xl font-serif font-bold text-slate-950 mt-12 mb-6">Key Insights</h2>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-950 mt-10 mb-4">Clinical Guidance & Key Steps</h2>
               <p>
-                This article explores the fundamental aspects of {blog.title.toLowerCase()}. 
-                Whether you are seeking preventative advice or looking to understand a recent diagnosis, 
-                it is essential to rely on evidence-based medical information.
+                Understanding {blog.title.toLowerCase()} is vital for maintaining optimal reproductive and overall physical wellbeing.
               </p>
-              <ul className="list-disc pl-6 space-y-3 my-8">
-                <li>Early detection is the key to successful treatment.</li>
-                <li>Lifestyle modifications can reduce risk factors by up to 80%.</li>
-                <li>Regular check-ups at Dr. Faiza Hafeez Clinic ensure your health is monitored.</li>
-                <li>Modern diagnostic tools provide precise insights into your condition.</li>
+              <ul className="list-disc pl-6 space-y-2.5 my-6 text-sm font-medium">
+                <li>Early screening and routine checkups prevent major gynecological complications.</li>
+                <li>Hormonal balance and nutrition play a pivotal role in menstrual and reproductive wellness.</li>
+                <li>Continuous 3D/4D ultrasound monitoring ensures accurate fetal development tracking.</li>
+                <li>Consulting a qualified FCPS Gynecologist provides personalized treatment plans.</li>
               </ul>
-              <p>
-                If you or a loved one is experiencing symptoms related to this topic, 
-                do not hesitate to reach out. Our clinic in Lahore is equipped with 
-                advanced technology to provide you with the best possible care.
-              </p>
-              <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 my-12">
-                <h3 className="text-2xl font-serif font-bold text-slate-950 mb-4 italic">Dr. Faiza's Recommendation</h3>
-                <p className="text-slate-600">
-                  "Health is not merely the absence of disease, but a state of complete physical, mental, and social wellbeing. 
-                  Start prioritizing your heart and reproductive health today."
+              
+              <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-8 rounded-3xl border border-pink-200 my-10 space-y-2">
+                <div className="flex items-center gap-2 text-pink-700 font-serif font-bold text-xl">
+                  <Heart size={20} className="fill-pink-600 text-pink-600" />
+                  Dr. Faiza Hafeez's Medical Note
+                </div>
+                <p className="text-slate-700 text-sm leading-relaxed italic">
+                  "Prioritizing your maternal and pelvic health today ensures a safer, happier tomorrow for you and your family."
                 </p>
               </div>
 
@@ -108,21 +102,21 @@ export default async function BlogPost({ params }: Props) {
               <AdUnit slot="1234567890" />
               
               {/* Multiplex Ad Unit */}
-              <div className="mt-12 pt-8 border-t border-slate-100">
-                <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Recommended for you</h4>
+              <div className="mt-12 pt-8 border-t border-pink-100">
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Recommended Health Guides</h4>
                 <AdUnit slot="1788948754" format="autorelaxed" />
               </div>
             </div>
           </div>
           
-          <div className="mt-16 pt-12 border-t border-slate-100">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8 bg-slate-950 p-10 rounded-[40px] text-white">
-              <div className="space-y-4">
-                <h4 className="text-2xl font-serif font-bold">Book a Consultation</h4>
-                <p className="text-slate-400">Discuss your health concerns with Dr. Faiza Hafeez today.</p>
+          <div className="mt-16 pt-10 border-t border-pink-100">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-slate-900 p-8 md:p-12 rounded-[36px] text-white shadow-2xl relative overflow-hidden">
+              <div className="space-y-2 text-center md:text-left">
+                <h4 className="text-2xl font-serif font-bold">Have Questions About Your Health?</h4>
+                <p className="text-slate-300 text-sm">Schedule a direct consultation with Dr. Faiza Hafeez in Lahore.</p>
               </div>
-              <Link href="/appointments" className="px-10 py-5 bg-primary text-white rounded-full font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/20">
-                Book Appointment
+              <Link href="/appointments" className="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-sm hover:bg-pink-500 transition-all shadow-xl shadow-pink-600/30 whitespace-nowrap">
+                Book Consultation
               </Link>
             </div>
           </div>
@@ -134,3 +128,4 @@ export default async function BlogPost({ params }: Props) {
     </main>
   );
 }
+

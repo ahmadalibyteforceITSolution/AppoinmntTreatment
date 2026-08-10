@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGO_URI;
 
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGO_URI environment variable inside .env.local");
-}
-
 let cached = (global as any).mongoose;
 
 if (!cached) {
@@ -13,6 +9,11 @@ if (!cached) {
 }
 
 async function connectToDatabase() {
+  if (!MONGODB_URI) {
+    console.warn("MONGO_URI environment variable is missing. Database operations will be skipped.");
+    return null;
+  }
+
   if (cached.conn) {
     return cached.conn;
   }
@@ -22,7 +23,7 @@ async function connectToDatabase() {
       bufferCommands: false,
     };
 
-    cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
       return mongoose;
     });
   }
@@ -31,10 +32,12 @@ async function connectToDatabase() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    throw e;
+    console.error("MongoDB Connection Error:", e);
+    return null;
   }
 
   return cached.conn;
 }
 
 export default connectToDatabase;
+

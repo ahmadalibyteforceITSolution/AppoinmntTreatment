@@ -1,93 +1,90 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ShieldCheck, Clock } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck, Heart, Award, Sparkles } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden bg-slate-50">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-primary/5 rounded-l-[100px] -z-10 hidden lg:block" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10" />
+    <section className="relative min-h-[90vh] flex items-center pt-28 pb-16 overflow-hidden bg-gradient-to-br from-rose-50/60 via-white to-pink-50/40">
+      {/* Background Glow & Shapes */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-pink-100/40 rounded-l-[120px] -z-10 hidden lg:block blur-xl" />
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-rose-200/30 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="space-y-8 animate-in fade-in slide-in-from-left duration-1000">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-wider uppercase">
-            <Star size={14} fill="currentColor" />
-            Top Rated Specialist in Lahore
+        <div className="space-y-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100/80 text-pink-700 text-xs font-bold tracking-wider uppercase border border-pink-200 shadow-sm">
+            <Star size={14} className="fill-pink-600 text-pink-600" />
+            Top Gynecologist & Obstetrics Specialist in Lahore
           </div>
           
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-slate-950 leading-tight">
-            Your Health is Our <span className="text-primary italic">Highest</span> Priority.
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
+            Compassionate Care for <span className="text-pink-600 italic">Women's Health</span> & Motherhood.
           </h1>
           
-          <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
-            Experience premium medical care with Dr. Faiza Hafeez. Specializing in cardiology and gynecology with a commitment to excellence and compassionate patient care.
+          <p className="text-base md:text-lg text-slate-600 max-w-xl leading-relaxed font-normal">
+            Welcome to the specialized clinic of <strong className="text-slate-900 font-semibold">Dr. Faiza Hafeez (FCPS)</strong>. Dedicated to high-risk pregnancy care, infertility treatment, PCOS management, 3D ultrasound scans, and laparoscopic gynecological surgery.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 pt-2">
             <Link 
               href="/appointments" 
-              className="px-8 py-4 bg-primary text-white rounded-full font-bold text-lg hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 flex items-center justify-center gap-2"
+              className="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-base hover:bg-pink-700 transition-all shadow-xl shadow-pink-600/30 flex items-center justify-center gap-2 group"
             >
               Book Appointment
-              <ArrowRight size={20} />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link 
               href="/services" 
-              className="px-8 py-4 bg-white text-slate-900 border border-slate-200 rounded-full font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center"
+              className="px-8 py-4 bg-white text-slate-900 border border-pink-200 rounded-full font-bold text-base hover:bg-pink-50/50 transition-all shadow-sm flex items-center justify-center"
             >
-              Explore Services
+              Explore Treatments
             </Link>
           </div>
           
-          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-slate-200">
+          <div className="grid grid-cols-3 gap-6 pt-8 border-t border-pink-100">
             <div className="space-y-1">
-              <div className="text-2xl font-bold text-slate-950">15+</div>
-              <div className="text-xs text-slate-500 uppercase tracking-widest">Years Experience</div>
+              <div className="text-2xl md:text-3xl font-bold text-pink-700">15+</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Years Experience</div>
             </div>
             <div className="space-y-1">
-              <div className="text-2xl font-bold text-slate-950">10k+</div>
-              <div className="text-xs text-slate-500 uppercase tracking-widest">Happy Patients</div>
+              <div className="text-2xl md:text-3xl font-bold text-pink-700">12,000+</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Safe Deliveries</div>
             </div>
             <div className="space-y-1">
-              <div className="text-2xl font-bold text-slate-950">24/7</div>
-              <div className="text-xs text-slate-500 uppercase tracking-widest">Emergency Care</div>
+              <div className="text-2xl md:text-3xl font-bold text-pink-700">99.8%</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Patient Trust</div>
             </div>
           </div>
         </div>
 
-        <div className="relative animate-in fade-in slide-in-from-right duration-1000 delay-200">
-          <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white">
-            {/* Using a placeholder for now, but will suggest generating an image */}
-            <div className="w-full h-full bg-slate-200 flex items-center justify-center relative overflow-hidden rounded-[32px]">
-              <Image 
-                src="/faiza.jpg" 
-                alt="Dr. Faiza Hafeez"
-                fill
-                className="object-cover scale-[1.15] origin-bottom"
-                priority
-              />
+        <div className="relative">
+          <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white bg-pink-50">
+            <Image 
+              src="/faiza.jpg" 
+              alt="Dr. Faiza Hafeez - Consultant Gynecologist Lahore"
+              fill
+              className="object-cover scale-[1.05] origin-bottom"
+              priority
+            />
+          </div>
+          
+          {/* Floating Badges */}
+          <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-4 border border-pink-100">
+            <div className="w-12 h-12 bg-pink-100 text-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <ShieldCheck size={26} />
+            </div>
+            <div>
+              <div className="text-sm font-bold text-slate-900">FCPS Specialist</div>
+              <div className="text-xs text-slate-500 font-medium">PMC Certified Gynecologist</div>
             </div>
           </div>
           
-          {/* Floating Cards */}
-          <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-bounce-slow">
-            <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center">
-              <ShieldCheck size={28} />
+          <div className="absolute top-8 -right-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-3 border border-pink-100 hidden sm:flex">
+            <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              <Sparkles size={22} />
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-950">Verified Expert</div>
-              <div className="text-xs text-slate-500">PMC Certified</div>
-            </div>
-          </div>
-          
-          <div className="absolute top-1/4 -right-6 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-4">
-            <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center">
-              <Clock size={28} />
-            </div>
-            <div>
-              <div className="text-sm font-bold text-slate-950">Fast Booking</div>
-              <div className="text-xs text-slate-500">Under 2 Mins</div>
+              <div className="text-sm font-bold text-slate-900">High-Risk Care</div>
+              <div className="text-xs text-slate-500 font-medium">Expert Obstetrics</div>
             </div>
           </div>
         </div>

@@ -8,24 +8,26 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Image from "next/image";
 import AdUnit from "@/components/AdUnit";
+import Link from "next/link";
+import { Heart } from "lucide-react";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-white">
       <Navbar />
       <Hero />
       <Services />
       
       {/* About Section Preview */}
-      <section className="py-24 bg-white overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-white via-pink-50/20 to-white overflow-hidden border-y border-pink-100/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl -z-10" />
-              <div className="rounded-[40px] overflow-hidden shadow-2xl border-4 border-slate-50 aspect-video relative">
-                 <Image 
-                  src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800" 
-                  alt="Modern Hospital Interior"
+              <div className="absolute -top-10 -left-10 w-48 h-48 bg-pink-200/30 rounded-full blur-3xl -z-10" />
+              <div className="rounded-[40px] overflow-hidden shadow-2xl border-4 border-white aspect-video relative bg-pink-100">
+                <Image 
+                  src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&q=80&w=800" 
+                  alt="Dr. Faiza Hafeez Gynecology Clinic Consultation Room"
                   fill
                   className="object-cover"
                 />
@@ -33,35 +35,42 @@ export default function Home() {
             </div>
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className="text-primary font-bold tracking-widest uppercase text-sm">About Our Clinic</h2>
-                <h3 className="text-4xl md:text-5xl font-serif font-bold text-slate-950">World Class Healthcare in the Heart of Lahore</h3>
-                <p className="text-slate-600 leading-relaxed">
-                  Inspired by the excellence of Hameed Latif and Ittefaq Hospital, our clinic 
-                  brings premium medical services to your doorstep. Dr. Faiza Hafeez leads a 
-                  team dedicated to providing patient-centric care with modern diagnostics and 
-                  compassionate treatment plans.
+                <div className="flex items-center gap-2">
+                  <Heart size={16} className="fill-pink-600 text-pink-600" />
+                  <span className="text-pink-600 font-bold tracking-widest uppercase text-xs">About Our Clinic</span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-slate-950 leading-tight">
+                  Premier Women's Healthcare in the Heart of Lahore
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-base">
+                  Dr. Faiza Hafeez (FCPS Gynecology & Obstetrics) brings over 15 years of clinical excellence from leading medical institutions, including Hameed Latif and Ittefaq Hospital. Our clinic provides compassionate, confidential, and comprehensive care for mothers and women of all ages.
                 </p>
               </div>
               
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  "Certified Specialists",
-                  "Advanced Diagnostics",
-                  "Personalized Care Plans",
-                  "Emergency Support"
+                  "FCPS Certified Consultant",
+                  "3D/4D Fetal Anomaly Ultrasound",
+                  "High-Risk Pregnancy Unit",
+                  "Infertility & PCOS Clinic",
+                  "Laparoscopic Surgery Specialist",
+                  "24/7 Emergency Delivery Support"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3 font-bold text-slate-800">
-                    <div className="w-6 h-6 bg-primary/20 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-primary rounded-full" />
+                  <li key={idx} className="flex items-center gap-3 font-semibold text-slate-800 text-sm">
+                    <div className="w-5 h-5 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-2 h-2 bg-pink-600 rounded-full" />
                     </div>
                     {item}
                   </li>
                 ))}
               </ul>
               
-              <button className="px-8 py-4 border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all">
-                Learn More About Us
-              </button>
+              <Link 
+                href="/about" 
+                className="inline-block px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-sm hover:bg-pink-700 transition-all shadow-lg shadow-pink-600/25"
+              >
+                Learn More About Dr. Faiza
+              </Link>
             </div>
           </div>
         </div>
@@ -78,3 +87,4 @@ export default function Home() {
     </main>
   );
 }
+

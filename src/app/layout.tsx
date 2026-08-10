@@ -14,30 +14,62 @@ const inter = Inter({
 });
 
 export const viewport = {
-  themeColor: "#0ea5e9",
+  themeColor: "#db2777",
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://appoinmnt-treatment.vercel.app"),
-  title: "Dr. Faiza Hafeez | Premium Medical Specialist & Appointments",
-  description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments. Book your appointment at Lahore's premier medical clinic.",
-  keywords: "Dr. Faiza Hafeez, Cardiology Lahore, Gynecology Lahore, Hameed Latif Hospital specialists, Ittefaq Hospital specialists, Medical Appointments Lahore, Nursing Schedule, Heart Specialist Pakistan",
+  title: "Dr. Faiza Hafeez | Consultant Gynecologist, Obstetrician & Women's Health Specialist Lahore",
+  description: "Premier gynecology, high-risk pregnancy care, infertility treatment, PCOS management, 3D/4D ultrasound, and laparoscopic surgery in Lahore by Dr. Faiza Hafeez (FCPS). Book your consultation today.",
+  keywords: [
+    "Dr. Faiza Hafeez",
+    "Best Gynecologist Lahore",
+    "Female Gynecologist Lahore",
+    "Obstetrician Lahore",
+    "High Risk Pregnancy Specialist",
+    "Infertility Specialist Lahore",
+    "PCOS Treatment Lahore",
+    "Hameed Latif Hospital Gynecologist",
+    "Ittefaq Hospital Gynecologist",
+    "Gynecology Appointment Lahore",
+    "3D 4D Ultrasound Pregnancy Lahore",
+    "Cervical Screening Pap Smear Lahore"
+  ].join(", "),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   alternates: {
-    canonical: "/",
+    canonical: "https://appoinmnt-treatment.vercel.app",
   },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Faiza Clinic",
+    title: "Dr. Faiza Clinic",
   },
   openGraph: {
-    title: "Dr. Faiza Hafeez | Premium Medical Specialist",
-    description: "Expert medical care with a focus on Cardiology, Gynecology, and specialized treatments.",
+    title: "Dr. Faiza Hafeez | Consultant Gynecologist & Obstetrician Lahore",
+    description: "Expert maternal care, pregnancy ultrasound, PCOS & fertility consultations in Lahore.",
     url: "https://appoinmnt-treatment.vercel.app",
     siteName: "Dr. Faiza Hafeez Clinic",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://appoinmnt-treatment.vercel.app/faiza.jpg",
+        width: 800,
+        height: 1000,
+        alt: "Dr. Faiza Hafeez - Consultant Gynecologist",
+      },
+    ],
   },
   verification: {
     google: [
@@ -50,6 +82,48 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  "name": "Dr. Faiza Hafeez Clinic",
+  "image": "https://appoinmnt-treatment.vercel.app/faiza.jpg",
+  "@id": "https://appoinmnt-treatment.vercel.app/#clinic",
+  "url": "https://appoinmnt-treatment.vercel.app",
+  "telephone": "+923344280522",
+  "priceRange": "PKR 2500 - 15000",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Medical Square, Gulberg III",
+    "addressLocality": "Lahore",
+    "addressRegion": "Punjab",
+    "postalCode": "54000",
+    "addressCountry": "PK"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 31.5204,
+    "longitude": 74.3587
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "19:00"
+  },
+  "medicalSpecialty": [
+    "Gynecologic",
+    "Obstetric",
+    "ReproductiveEndocrinology"
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,16 +131,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
-      <body
-        className="min-h-full flex flex-col font-sans bg-white text-slate-900"
-      >
+      <head>
         <script
-          async
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-pink-100 selection:text-pink-700">
+        <Script
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1888138480311828"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
-        ></script>
+        />
         {children}
       </body>
     </html>
   );
 }
+
