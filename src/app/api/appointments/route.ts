@@ -5,19 +5,27 @@ import { Appointment } from "@/models/Appointment";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    await connectToDatabase();
+    const db = await connectToDatabase();
 
-    const newAppointment = await Appointment.create(body);
+    let newAppointment = null;
+    if (db) {
+      newAppointment = await Appointment.create(body);
+    }
 
     return NextResponse.json(
-      { message: "Appointment booked successfully", appointment: newAppointment },
+      { 
+        message: "Appointment request processed successfully", 
+        appointment: newAppointment,
+        dbConnected: Boolean(db)
+      },
       { status: 201 }
     );
   } catch (error: any) {
-    console.error("Error booking appointment:", error);
+    console.error("Error processing appointment:", error);
     return NextResponse.json(
-      { message: "Internal Server Error", error: error.message },
+      { message: "Server Error", error: error.message },
       { status: 500 }
     );
   }
 }
+

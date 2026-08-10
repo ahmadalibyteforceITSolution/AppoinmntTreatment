@@ -57,7 +57,14 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export async function generateStaticParams() {
+  return Object.keys(servicesData).map((slug) => ({
+    slug,
+  }));
+}
+
 export default async function ServiceDetailPage({ params }: Props) {
+
   const { slug } = await params;
   const service = servicesData[slug];
 

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGO_URI;
+const MONGODB_URI = process.env.MONGO_URI || process.env.MONGODB_URI;
 
 let cached = (global as any).mongoose;
 
@@ -10,9 +10,10 @@ if (!cached) {
 
 async function connectToDatabase() {
   if (!MONGODB_URI) {
-    console.warn("MONGO_URI environment variable is missing. Database operations will be skipped.");
+    console.warn("MongoDB URI environment variable (MONGO_URI or MONGODB_URI) is missing. Database operations will be skipped.");
     return null;
   }
+
 
   if (cached.conn) {
     return cached.conn;

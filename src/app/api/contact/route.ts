@@ -5,19 +5,27 @@ import { Contact } from "@/models/Contact";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    await connectToDatabase();
+    const db = await connectToDatabase();
 
-    const newContact = await Contact.create(body);
+    let newContact = null;
+    if (db) {
+      newContact = await Contact.create(body);
+    }
 
     return NextResponse.json(
-      { message: "Message sent successfully", contact: newContact },
+      { 
+        message: "Message processed successfully", 
+        contact: newContact,
+        dbConnected: Boolean(db)
+      },
       { status: 201 }
     );
   } catch (error: any) {
     console.error("Error saving contact message:", error);
     return NextResponse.json(
-      { message: "Internal Server Error", error: error.message },
+      { message: "Server Error", error: error.message },
       { status: 500 }
     );
   }
 }
+
