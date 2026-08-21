@@ -1,20 +1,36 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, PhoneCall } from "lucide-react";
 
 const FloatingWhatsApp = () => {
   return (
-    <a
-      href="https://wa.me/923344280522"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-all flex items-center justify-center group"
-      aria-label="Contact on WhatsApp"
-    >
-      <MessageCircle size={32} />
-      <span className="absolute right-full mr-4 bg-white text-slate-900 px-4 py-2 rounded-lg text-sm font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-100 pointer-events-none">
-        Chat with us on WhatsApp
-      </span>
-    </a>
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 items-end">
+      {/* Click to Call Button */}
+      <a
+        href="tel:+923344280522"
+        className="bg-pink-600 text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:bg-pink-700 hover:scale-110 transition-all flex items-center justify-center group relative border-2 border-white"
+        aria-label="Call Doctor Directly"
+      >
+        <PhoneCall size={26} />
+        <span className="absolute right-full mr-3 bg-slate-900 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          Call Doctor: +92 334 4280522
+        </span>
+      </a>
+
+      {/* WhatsApp Button */}
+      <a
+        href="https://wa.me/923344280522"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-emerald-500 text-white p-3.5 sm:p-4 rounded-full shadow-2xl hover:bg-emerald-600 hover:scale-110 transition-all flex items-center justify-center group relative border-2 border-white"
+        aria-label="Contact on WhatsApp"
+      >
+        <MessageCircle size={26} />
+        <span className="absolute right-full mr-3 bg-slate-900 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+          WhatsApp Direct Inquiry
+        </span>
+      </a>
+    </div>
   );
 };
 
 export default FloatingWhatsApp;
+

@@ -22,19 +22,20 @@ export const metadata: Metadata = {
   title: "Dr. Faiza Hafeez | Consultant Gynecologist, Obstetrician & Women's Health Specialist Lahore",
   description: "Premier gynecology, high-risk pregnancy care, infertility treatment, PCOS management, 3D/4D ultrasound, and laparoscopic surgery in Lahore by Dr. Faiza Hafeez (FCPS). Book your consultation today.",
   keywords: [
-    "Dr. Faiza Hafeez",
-    "Best Gynecologist Lahore",
-    "Female Gynecologist Lahore",
-    "Obstetrician Lahore",
-    "High Risk Pregnancy Specialist",
-    "Infertility Specialist Lahore",
-    "PCOS Treatment Lahore",
-    "Hameed Latif Hospital Gynecologist",
-    "Ittefaq Hospital Gynecologist",
-    "Gynecology Appointment Lahore",
-    "3D 4D Ultrasound Pregnancy Lahore",
-    "Cervical Screening Pap Smear Lahore"
+    "Dr. Faiza Hafeez", "Dr Faiza Hafeez Gynecologist", "Best Gynecologist Lahore", "Female Gynecologist Lahore",
+    "Top Gynecologist Lahore", "Consultant Gynecologist Lahore", "Obstetrician Lahore", "High Risk Pregnancy Specialist Lahore",
+    "Infertility Specialist Lahore", "IVF Specialist Lahore", "PCOS Treatment Lahore", "PCOD Specialist Lahore",
+    "3D 4D Ultrasound Lahore", "Fetal Anomaly Scan Lahore", "Laparoscopic Gynecologist Lahore", "Pap Smear Screening Lahore",
+    "Cervical Cancer Screening Lahore", "Postnatal Care Specialist Lahore", "Menopause Clinic Lahore", "Fibroid Treatment Lahore",
+    "Ovarian Cyst Surgery Lahore", "Hameed Latif Hospital Gynecologist", "Ittefaq Hospital Gynecologist", "Gulberg Lahore Gynecologist",
+    "DHA Lahore Female Gynecologist", "Model Town Gynecologist", "Johar Town Gynecologist", "Gynecology Clinic Lahore",
+    "Pregnancy Care Doctor Lahore", "Normal Delivery Doctor Lahore", "C-Section Specialist Lahore", "VBAC Doctor Lahore",
+    "Pregnancy Ultrasound Lahore", "Follicular Tracking Scan Lahore", "HSG Test Lahore", "IUI Treatment Lahore",
+    "Irregular Period Treatment Lahore", "Heavy Bleeding Treatment Lahore", "Endometriosis Treatment Lahore", "Pelvic Pain Treatment Lahore",
+    "Adolescent Gynecologist Lahore", "Well Woman Clinic Lahore", "Pregnancy Nutrition Guidance", "Female Doctor Booking Lahore",
+    "Online Gynecology Consultation Pakistan", "Emergency Gynecologist Lahore", "Maternity Hospital Gulberg Lahore", "Gynecologist Phone Number Lahore"
   ].join(", "),
+
   robots: {
     index: true,
     follow: true,

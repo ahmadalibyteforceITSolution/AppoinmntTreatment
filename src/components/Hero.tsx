@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Star, ShieldCheck, Heart, Award, Sparkles } from "lucide-react";
+import { ArrowRight, Star, ShieldCheck, Sparkles, PhoneCall } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -21,22 +21,29 @@ const Hero = () => {
           </h1>
           
           <p className="text-base md:text-lg text-slate-600 max-w-xl leading-relaxed font-normal">
-            Welcome to the specialized clinic of <strong className="text-slate-900 font-semibold">Dr. Faiza Hafeez (FCPS)</strong>. Dedicated to high-risk pregnancy care, infertility treatment, PCOS management, 3D ultrasound scans, and laparoscopic gynecological surgery.
+            Welcome to the specialized clinic of <strong className="text-slate-900 font-semibold">Dr. Faiza Hafeez (FCPS)</strong>. Dedicated to high-risk pregnancy care, infertility treatment, PCOS management, 3D ultrasound scans, and laparoscopic gynecological surgery in Lahore.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <Link 
               href="/appointments" 
-              className="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-base hover:bg-pink-700 transition-all shadow-xl shadow-pink-600/30 flex items-center justify-center gap-2 group"
+              className="px-7 py-4 bg-pink-600 text-white rounded-full font-bold text-base hover:bg-pink-700 transition-all shadow-xl shadow-pink-600/30 flex items-center justify-center gap-2 group whitespace-nowrap"
             >
               Book Appointment
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
+            <a 
+              href="tel:+923344280522" 
+              className="px-7 py-4 bg-slate-900 text-white rounded-full font-bold text-base hover:bg-slate-800 transition-all shadow-md flex items-center justify-center gap-2 whitespace-nowrap"
+            >
+              <PhoneCall size={18} className="text-pink-400" />
+              Call Now: 0334 4280522
+            </a>
             <Link 
               href="/services" 
-              className="px-8 py-4 bg-white text-slate-900 border border-pink-200 rounded-full font-bold text-base hover:bg-pink-50/50 transition-all shadow-sm flex items-center justify-center"
+              className="px-7 py-4 bg-white text-slate-900 border border-pink-200 rounded-full font-bold text-base hover:bg-pink-50/50 transition-all shadow-sm flex items-center justify-center whitespace-nowrap"
             >
-              Explore Treatments
+              Treatments
             </Link>
           </div>
           
