@@ -19,8 +19,8 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://faizahafeez-bytely-team.vercel.app"),
-  title: "Dr. Faiza Hafeez | Consultant Gynecologist, Obstetrician & Women's Health Specialist Lahore",
-  description: "Premier gynecology, high-risk pregnancy care, infertility treatment, PCOS management, 3D/4D ultrasound, and laparoscopic surgery in Lahore by Dr. Faiza Hafeez (FCPS). Book your consultation today.",
+  title: "Dr. Faiza Hafeez | Best Gynecologist & Obstetrician Lahore",
+  description: "Top Consultant Gynecologist in Lahore Dr. Faiza Hafeez (FCPS). Expert high-risk pregnancy care, infertility, PCOS management, and 3D/4D ultrasound.",
   keywords: [
     "Dr. Faiza Hafeez", "Dr Faiza Hafeez Gynecologist", "Best Gynecologist Lahore", "Female Gynecologist Lahore",
     "Top Gynecologist Lahore", "Consultant Gynecologist Lahore", "Obstetrician Lahore", "High Risk Pregnancy Specialist Lahore",
