@@ -1,7 +1,8 @@
 import { blogs } from "@/data/blogs";
 import { MetadataRoute } from "next";
 
-export const revalidate = 3600; // Revalidate every hour
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Always serve the latest up-to-date sitemap
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://faizahafeez-bytely-team.vercel.app";
