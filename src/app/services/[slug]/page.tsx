@@ -1,61 +1,121 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Heart } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Heart, ExternalLink, ShieldCheck } from "lucide-react";
 import { notFound } from "next/navigation";
 
-const servicesData: Record<string, { title: string; description: string; features: string[] }> = {
+const servicesData: Record<string, { title: string; description: string; features: string[]; clinicalGuidelines?: { title: string; source: string; url: string }[] }> = {
   "high-risk-pregnancy": {
     title: "High-Risk Pregnancy & Maternal Care",
-    description: "Expert maternal-fetal supervision for high-risk pregnancies, pre-eclampsia, gestational diabetes, multiple gestations, and previous miscarriage history.",
-    features: ["Continuous Fetal Wellbeing Doppler Scans", "Blood Pressure & Blood Sugar Control Protocols", "Pre-Term Labor Prevention Management", "24/7 Priority Hospital Admission Support"]
+    description: "Expert maternal-fetal supervision for high-risk pregnancies, pre-eclampsia, gestational diabetes, multiple gestations, and previous miscarriage history in Lahore.",
+    features: ["Continuous Fetal Wellbeing Doppler Scans", "Blood Pressure & Blood Sugar Control Protocols", "Pre-Term Labor Prevention Management", "24/7 Priority Hospital Admission Support"],
+    clinicalGuidelines: [
+      { title: "ACOG Guidelines on High-Risk Pregnancy Care", source: "American College of Obstetricians and Gynecologists", url: "https://www.acog.org/womens-health" },
+      { title: "WHO Maternal & Perinatal Health Standards", source: "World Health Organization", url: "https://www.who.int/health-topics/maternal-health" }
+    ]
   },
   gynecology: {
     title: "Gynecology & Pelvic Health",
-    description: "Comprehensive women's pelvic healthcare including routine checkups, menstrual disorder therapy, fibroid management, and endometriosis care.",
-    features: ["Heavy & Irregular Period Therapy", "Uterine Fibroids & Ovarian Cyst Management", "Endometriosis & Pelvic Pain Relief", "Annual Well-Woman Health Checks"]
+    description: "Comprehensive women's pelvic healthcare including routine checkups, menstrual disorder therapy, fibroid management, and endometriosis care in Lahore.",
+    features: ["Heavy & Irregular Period Therapy", "Uterine Fibroids & Ovarian Cyst Management", "Endometriosis & Pelvic Pain Relief", "Annual Well-Woman Health Checks"],
+    clinicalGuidelines: [
+      { title: "RCOG Women's Pelvic Health Guidance", source: "Royal College of Obstetricians and Gynaecologists", url: "https://www.rcog.org.uk/for-the-public" },
+      { title: "NHS Women's Reproductive Health Overview", source: "NHS UK", url: "https://www.nhs.uk/conditions/womens-health/" }
+    ]
   },
   "infertility-treatment": {
     title: "Infertility & Reproductive Wellness",
-    description: "Holistic fertility evaluations, ovulation stimulation, follicular ultrasound tracking, and personalized conception roadmaps.",
-    features: ["Hormonal Profile & Ovarian Reserve Assessment", "Follicular Tracking Ultrasound", "Tubal Patency Testing Guidance", "Couples Fertility Counseling"]
+    description: "Holistic fertility evaluations, ovulation stimulation, follicular ultrasound tracking, and personalized conception roadmaps in Lahore by Dr. Faiza Hafeez.",
+    features: ["Hormonal Profile & Ovarian Reserve Assessment", "Follicular Tracking Ultrasound", "Tubal Patency Testing Guidance", "Couples Fertility Counseling"],
+    clinicalGuidelines: [
+      { title: "ASRM Guidelines for Fertility Evaluation", source: "American Society for Reproductive Medicine", url: "https://www.reproductivefacts.org/" }
+    ]
   },
   "3d-4d-ultrasound": {
     title: "3D / 4D Fetal Anomaly Ultrasound",
-    description: "High-precision ultrasound scanning for detailed fetal organ development evaluation, anomaly screening, and live 4D baby imaging.",
-    features: ["1st Trimester Nuchal Translucency (NT) Scan", "18-22 Weeks Detailed Anomaly Screening", "Fetal Growth & Doppler Blood Flow Analysis", "High-Resolution Image Prints"]
+    description: "High-precision ultrasound scanning for detailed fetal organ development evaluation, anomaly screening, and live 4D baby imaging in Lahore.",
+    features: ["1st Trimester Nuchal Translucency (NT) Scan", "18-22 Weeks Detailed Anomaly Screening", "Fetal Growth & Doppler Blood Flow Analysis", "High-Resolution Image Prints"],
+    clinicalGuidelines: [
+      { title: "ISUOG Practice Guidelines: Fetal Ultrasound", source: "International Society of Ultrasound in Obstetrics and Gynecology", url: "https://www.isuog.org/clinical-resources/patient-information-leaflets.html" }
+    ]
   },
   "pcos-management": {
     title: "PCOS / PCOD & Hormonal Management",
-    description: "Tailored medical and dietary interventions to manage Polycystic Ovary Syndrome, restore regular periods, and treat acne and hirsutism.",
-    features: ["Insulin Resistance & Metabolic Optimization", "Menstrual Cycle Regulation", "Hormonal Hair Loss & Skin Care Guidance", "Fertility Restoration for PCOS"]
+    description: "Tailored medical and dietary interventions to manage Polycystic Ovary Syndrome, restore regular periods, and treat acne and hirsutism in Lahore.",
+    features: ["Insulin Resistance & Metabolic Optimization", "Menstrual Cycle Regulation", "Hormonal Hair Loss & Skin Care Guidance", "Fertility Restoration for PCOS"],
+    clinicalGuidelines: [
+      { title: "International Evidence-Based Guideline for PCOS", source: "Monash University & Endocrine Society", url: "https://www.monash.edu/medicine/sphpm/mchri/pcos" }
+    ]
   },
   "laparoscopic-surgery": {
     title: "Laparoscopic & Minimally Invasive Surgery",
-    description: "Advanced keyhole gynecological procedures offering minimal scarring, faster recovery, and shorter hospital stays.",
-    features: ["Laparoscopic Ovarian Cystectomy", "Keyhole Fibroid Removal (Myomectomy)", "Diagnostic & Operative Hysteroscopy", "Minimal Access Surgical Care"]
+    description: "Advanced keyhole gynecological procedures offering minimal scarring, faster recovery, and shorter hospital stays in Lahore.",
+    features: ["Laparoscopic Ovarian Cystectomy", "Keyhole Fibroid Removal (Myomectomy)", "Diagnostic & Operative Hysteroscopy", "Minimal Access Surgical Care"],
+    clinicalGuidelines: [
+      { title: "AAGL Minimally Invasive Gynecologic Surgery Standards", source: "American Association of Gynecologic Laparoscopists", url: "https://www.aagl.org/" }
+    ]
   },
   "cervical-screening": {
     title: "Cervical Screening & Pap Smear Clinic",
-    description: "Preventive cervical health checkups, liquid-based Pap cytology, HPV DNA testing, and early pre-cancerous lesion care.",
-    features: ["Routine Pap Smear Cytology", "High-Risk HPV DNA Screening", "Colposcopy Evaluation Referral", "Cervical Health Counseling"]
+    description: "Preventive cervical health checkups, liquid-based Pap cytology, HPV DNA testing, and early pre-cancerous lesion care in Lahore.",
+    features: ["Routine Pap Smear Cytology", "High-Risk HPV DNA Screening", "Colposcopy Evaluation Referral", "Cervical Health Counseling"],
+    clinicalGuidelines: [
+      { title: "WHO Cervical Cancer Elimination Initiative", source: "World Health Organization", url: "https://www.who.int/initiatives/cervical-cancer-elimination-initiative" }
+    ]
   },
   "postnatal-care": {
     title: "Postnatal Care & Lactation Support",
-    description: "Supportive post-delivery checkups, incision healing care, newborn nursing guidance, and maternal emotional recovery.",
-    features: ["Post-C-Section & Perineal Wound Assessment", "Lactation & Latching Guidance", "Postpartum Depression & Mood Support", "Safe Post-Delivery Contraception"]
+    description: "Supportive post-delivery checkups, incision healing care, newborn nursing guidance, and maternal emotional recovery in Lahore.",
+    features: ["Post-C-Section & Perineal Wound Assessment", "Lactation & Latching Guidance", "Postpartum Depression & Mood Support", "Safe Post-Delivery Contraception"],
+    clinicalGuidelines: [
+      { title: "WHO Postnatal Care Recommendations", source: "World Health Organization", url: "https://www.who.int/publications/i/item/9789240045989" }
+    ]
   },
   "menopause-wellness": {
     title: "Menopause & Healthy Aging Clinic",
-    description: "Compassionate care for women transitioning through menopause, addressing hot flashes, osteoporosis prevention, and hormonal balance.",
-    features: ["Hormone Replacement Therapy (HRT) Counseling", "Bone Density (DEXA) Screening Guidance", "Urogenital Health & Dryness Relief", "Cardiovascular & Metabolic Health Checks"]
+    description: "Compassionate care for women transitioning through menopause, addressing hot flashes, osteoporosis prevention, and hormonal balance in Lahore.",
+    features: ["Hormone Replacement Therapy (HRT) Counseling", "Bone Density (DEXA) Screening Guidance", "Urogenital Health & Dryness Relief", "Cardiovascular & Metabolic Health Checks"],
+    clinicalGuidelines: [
+      { title: "International Menopause Society Guidelines", source: "International Menopause Society", url: "https://www.imsociety.org/" }
+    ]
   }
 };
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const service = servicesData[slug];
+  if (!service) return {};
+
+  const url = `https://faizahafeez-bytely-team.vercel.app/services/${slug}`;
+  return {
+    title: `${service.title} in Lahore | Dr. Faiza Hafeez FCPS`,
+    description: service.description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${service.title} | Dr. Faiza Hafeez Gynecologist Lahore`,
+      description: service.description,
+      url,
+      type: "website",
+    },
+    keywords: [
+      service.title,
+      `${service.title} Lahore`,
+      "Dr Faiza Hafeez",
+      "Gynecologist in Lahore",
+      "Female Gynecologist Lahore",
+      "Obstetrician Lahore",
+      ...service.features,
+    ].join(", "),
+  };
+}
 
 export async function generateStaticParams() {
   return Object.keys(servicesData).map((slug) => ({
@@ -64,13 +124,30 @@ export async function generateStaticParams() {
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
-
   const { slug } = await params;
   const service = servicesData[slug];
 
   if (!service) {
     notFound();
   }
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "name": service.title,
+    "description": service.description,
+    "provider": {
+      "@type": "Physician",
+      "name": "Dr. Faiza Hafeez",
+      "medicalSpecialty": "Obstetrics & Gynecology",
+      "url": "https://faizahafeez-bytely-team.vercel.app"
+    },
+    "location": {
+      "@type": "MedicalClinic",
+      "name": "Dr. Faiza Hafeez Clinic Lahore",
+      "address": "123 Medical Square, Gulberg III, Lahore, Pakistan"
+    }
+  };
 
   return (
     <main className="bg-white min-h-screen">
@@ -104,6 +181,34 @@ export default async function ServiceDetailPage({ params }: Props) {
               </div>
             ))}
           </div>
+
+          {service.clinicalGuidelines && service.clinicalGuidelines.length > 0 && (
+            <div className="mb-16 p-8 rounded-3xl bg-slate-50 border border-slate-200/80 space-y-4">
+              <div className="flex items-center gap-2 text-slate-900 font-serif font-bold text-lg">
+                <ShieldCheck size={20} className="text-pink-600" />
+                Evidence-Based Clinical References & Standards
+              </div>
+              <p className="text-xs text-slate-500 leading-relaxed">
+                All gynecological and obstetric protocols followed by Dr. Faiza Hafeez align with international clinical practice standards:
+              </p>
+              <ul className="space-y-2.5 pt-2">
+                {service.clinicalGuidelines.map((guide, idx) => (
+                  <li key={idx}>
+                    <a
+                      href={guide.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-semibold text-pink-700 hover:text-pink-900 hover:underline transition-colors"
+                    >
+                      <ExternalLink size={13} className="text-pink-500" />
+                      <span>{guide.title}</span>
+                      <span className="text-slate-400 font-normal">({guide.source})</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
 
           <div className="bg-slate-900 rounded-[40px] p-10 md:p-14 text-center text-white space-y-6 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl pointer-events-none" />

@@ -33,7 +33,14 @@ export const metadata: Metadata = {
     "Pregnancy Ultrasound Lahore", "Follicular Tracking Scan Lahore", "HSG Test Lahore", "IUI Treatment Lahore",
     "Irregular Period Treatment Lahore", "Heavy Bleeding Treatment Lahore", "Endometriosis Treatment Lahore", "Pelvic Pain Treatment Lahore",
     "Adolescent Gynecologist Lahore", "Well Woman Clinic Lahore", "Pregnancy Nutrition Guidance", "Female Doctor Booking Lahore",
-    "Online Gynecology Consultation Pakistan", "Emergency Gynecologist Lahore", "Maternity Hospital Gulberg Lahore", "Gynecologist Phone Number Lahore"
+    "Online Gynecology Consultation Pakistan", "Emergency Gynecologist Lahore", "Maternity Hospital Gulberg Lahore", "Gynecologist Phone Number Lahore",
+    "Best Lady Doctor in Lahore", "Lady Doctor for Pregnancy Lahore", "Obstetrics & Gynecology Clinic", "FCPS Gynecologist in Lahore",
+    "Top Rated Gynecologist in Lahore", "Women Healthcare Clinic Lahore", "Maternal Fetal Medicine Lahore", "PCOS Diet & Treatment Lahore",
+    "Infertility Clinic Lahore", "Natural Delivery Specialist", "Cesarean Delivery Doctor Lahore", "Gynecological Surgery Specialist",
+    "Hysteroscopy Lahore", "Laparoscopic Myomectomy Lahore", "Ovarian Cyst Removal Lahore", "Pre-eclampsia Specialist Lahore",
+    "Gestational Diabetes Treatment Lahore", "Menstrual Disorder Specialist Lahore", "Hormonal Imbalance Doctor Lahore",
+    "Faisal Town Gynecologist", "Garden Town Gynecologist", "Wapda Town Gynecologist", "Bahria Town Lahore Gynecologist",
+    "Cantonment Lahore Gynecologist", "Gynecologist Near Me", "Best Female Doctor for Pregnancy Near Me", "Zanana Doctor Lahore"
   ].join(", "),
 
   robots: {

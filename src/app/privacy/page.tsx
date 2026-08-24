@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Dr. Faiza Hafeez Clinic Lahore",
+  description: "Privacy policy and medical patient confidentiality guidelines for Dr. Faiza Hafeez Clinic.",
+  alternates: {
+    canonical: "https://faizahafeez-bytely-team.vercel.app/privacy",
+  },
+};
 
 export default function PrivacyPage() {
   return (

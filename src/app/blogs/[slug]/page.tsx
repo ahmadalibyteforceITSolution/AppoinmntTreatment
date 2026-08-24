@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { blogs } from "@/data/blogs";
 import Image from "next/image";
-import { Calendar, User, ArrowLeft, Heart } from "lucide-react";
+import { Calendar, User, ArrowLeft, Heart, ShieldCheck, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AdUnit from "../../../components/AdUnit";
@@ -11,6 +12,42 @@ import AdUnit from "../../../components/AdUnit";
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const blog = blogs.find((b) => b.slug === slug);
+  if (!blog) return {};
+
+  const url = `https://faizahafeez-bytely-team.vercel.app/blogs/${slug}`;
+  return {
+    title: `${blog.title} | Dr. Faiza Hafeez (FCPS Gynecologist Lahore)`,
+    description: blog.excerpt,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title: `${blog.title} | Dr. Faiza Hafeez`,
+      description: blog.excerpt,
+      url,
+      type: "article",
+      images: [
+        {
+          url: blog.image.startsWith("http") ? blog.image : `https://faizahafeez-bytely-team.vercel.app${blog.image}`,
+          alt: blog.title,
+        },
+      ],
+    },
+    keywords: [
+      blog.title,
+      blog.category,
+      "Dr Faiza Hafeez",
+      "Gynecologist Lahore",
+      "Obstetrician Lahore",
+      "Women Health Specialist",
+      "Pregnancy care Lahore"
+    ].join(", "),
+  };
+}
 
 export async function generateStaticParams() {
   return blogs.map((blog) => ({
@@ -96,6 +133,55 @@ export default async function BlogPost({ params }: Props) {
                 <p className="text-slate-700 text-sm leading-relaxed italic">
                   "Prioritizing your maternal and pelvic health today ensures a safer, happier tomorrow for you and your family."
                 </p>
+              </div>
+
+              {/* Authoritative Medical Sources / External Backlink References */}
+              <div className="my-10 p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
+                <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
+                  <ShieldCheck size={18} className="text-pink-600" />
+                  Medical Literature & Authority References (E-E-A-T)
+                </div>
+                <p className="text-xs text-slate-500">
+                  This article is reviewed by Dr. Faiza Hafeez (FCPS) and referenced against peer-reviewed clinical guidelines:
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                  <a
+                    href="https://pubmed.ncbi.nlm.nih.gov/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
+                  >
+                    <ExternalLink size={12} className="text-pink-500" />
+                    <span>PubMed / National Library of Medicine</span>
+                  </a>
+                  <a
+                    href="https://www.who.int/health-topics/maternal-health"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
+                  >
+                    <ExternalLink size={12} className="text-pink-500" />
+                    <span>WHO Maternal & Child Health</span>
+                  </a>
+                  <a
+                    href="https://www.acog.org/womens-health"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
+                  >
+                    <ExternalLink size={12} className="text-pink-500" />
+                    <span>ACOG Clinical Practice Guidelines</span>
+                  </a>
+                  <a
+                    href="https://www.rcog.org.uk/for-the-public"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
+                  >
+                    <ExternalLink size={12} className="text-pink-500" />
+                    <span>RCOG Patient Information</span>
+                  </a>
+                </div>
               </div>
 
               {/* Ad Unit after content */}

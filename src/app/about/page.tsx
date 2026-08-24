@@ -1,9 +1,23 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { Award, Users, Heart, ShieldCheck, Sparkles, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "About Dr. Faiza Hafeez | Consultant Gynecologist & Obstetrician FCPS Lahore",
+  description: "Learn about Dr. Faiza Hafeez (FCPS), leading Consultant Gynecologist & Obstetrician in Lahore with 15+ years experience in high-risk pregnancy, PCOS, fertility, and laparoscopic surgery.",
+  alternates: {
+    canonical: "https://faizahafeez-bytely-team.vercel.app/about",
+  },
+  openGraph: {
+    title: "About Dr. Faiza Hafeez | Consultant Gynecologist & Obstetrician Lahore",
+    description: "15+ years clinical excellence in maternal care, high-risk pregnancy, PCOS, and fertility treatments in Lahore.",
+    url: "https://faizahafeez-bytely-team.vercel.app/about",
+  },
+};
 
 export default function AboutPage() {
   return (

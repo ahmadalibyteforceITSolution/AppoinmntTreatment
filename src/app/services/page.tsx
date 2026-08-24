@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import Services from "@/components/Services";
 import BookingListing from "@/components/BookingListing";
+
+export const metadata: Metadata = {
+  title: "Gynecology, Obstetrics & Fertility Services | Dr. Faiza Hafeez Lahore",
+  description: "Specialized gynecology services in Lahore: High-risk pregnancy care, infertility & IVF, PCOS management, 3D/4D ultrasound, laparoscopic surgery, and cervical screening.",
+  alternates: {
+    canonical: "https://faizahafeez-bytely-team.vercel.app/services",
+  },
+  openGraph: {
+    title: "Gynecology & Obstetrics Services | Dr. Faiza Hafeez Lahore",
+    description: "Expert women's healthcare services, pregnancy ultrasound, PCOS, and fertility care in Lahore.",
+    url: "https://faizahafeez-bytely-team.vercel.app/services",
+  },
+};
 
 export default function ServicesPage() {
   return (

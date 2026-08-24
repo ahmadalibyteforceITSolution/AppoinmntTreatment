@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Dr. Faiza Hafeez Clinic Lahore",
+  description: "Terms of service and medical consultation conditions for Dr. Faiza Hafeez Clinic.",
+  alternates: {
+    canonical: "https://faizahafeez-bytely-team.vercel.app/terms",
+  },
+};
 
 export default function TermsPage() {
   return (

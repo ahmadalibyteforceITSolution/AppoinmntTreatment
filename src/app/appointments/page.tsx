@@ -1,8 +1,22 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import AppointmentScheduler from "@/components/AppointmentScheduler";
 import BookingForm from "@/components/BookingForm";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  title: "Book Gynecology Appointment Online | Dr. Faiza Hafeez Lahore Clinic",
+  description: "Schedule your consultation with top female gynecologist Dr. Faiza Hafeez in Lahore. Fast online booking for pregnancy care, PCOS, ultrasound, and fertility consultations.",
+  alternates: {
+    canonical: "https://faizahafeez-bytely-team.vercel.app/appointments",
+  },
+  openGraph: {
+    title: "Book Gynecology Consultation | Dr. Faiza Hafeez Lahore",
+    description: "Online appointment booking for Dr. Faiza Hafeez (FCPS Gynecologist & Obstetrician Lahore).",
+    url: "https://faizahafeez-bytely-team.vercel.app/appointments",
+  },
+};
 
 export default function AppointmentsPage() {
   return (
