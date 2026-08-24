@@ -18,7 +18,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://appoinmnt-treatment.vercel.app"),
+  metadataBase: new URL("https://dr.faizahafeez.app"),
   title: "Dr. Faiza Hafeez | Consultant Gynecologist, Obstetrician & Women's Health Specialist Lahore",
   description: "Premier gynecology, high-risk pregnancy care, infertility treatment, PCOS management, 3D/4D ultrasound, and laparoscopic surgery in Lahore by Dr. Faiza Hafeez (FCPS). Book your consultation today.",
   keywords: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://appoinmnt-treatment.vercel.app",
+    canonical: "https://dr.faizahafeez.app",
   },
   manifest: "/manifest.json",
   appleWebApp: {
@@ -59,13 +59,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dr. Faiza Hafeez | Consultant Gynecologist & Obstetrician Lahore",
     description: "Expert maternal care, pregnancy ultrasound, PCOS & fertility consultations in Lahore.",
-    url: "https://appoinmnt-treatment.vercel.app",
+    url: "https://dr.faizahafeez.app",
     siteName: "Dr. Faiza Hafeez Clinic",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://appoinmnt-treatment.vercel.app/faiza.jpg",
+        url: "https://dr.faizahafeez.app/faiza.jpg",
         width: 800,
         height: 1000,
         alt: "Dr. Faiza Hafeez - Consultant Gynecologist",
@@ -87,9 +87,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Physician",
   "name": "Dr. Faiza Hafeez Clinic",
-  "image": "https://appoinmnt-treatment.vercel.app/faiza.jpg",
-  "@id": "https://appoinmnt-treatment.vercel.app/#clinic",
-  "url": "https://appoinmnt-treatment.vercel.app",
+  "image": "https://dr.faizahafeez.app/faiza.jpg",
+  "@id": "https://dr.faizahafeez.app/#clinic",
+  "url": "https://dr.faizahafeez.app",
   "telephone": "+923344280522",
   "priceRange": "PKR 2500 - 15000",
   "address": {

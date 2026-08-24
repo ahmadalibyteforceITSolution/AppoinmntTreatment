@@ -4,7 +4,7 @@ import { MetadataRoute } from "next";
 export const revalidate = 3600; // Revalidate every hour
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://appoinmnt-treatment.vercel.app";
+  const baseUrl = "https://dr.faizahafeez.app";
   const currentDate = new Date().toISOString().split('T')[0];
 
   // Blog pages
