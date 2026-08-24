@@ -74,6 +74,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: [
+      "03qCkKQvBiUya7PxeevqSfiwZqxh98lc5uc2md7gVjA",
       "DI3Yaizs1_j78EF1QhR2H5E9r9qn8pFG3r_B-Y1g3i4",
       "qzoAflzxeJ6OrILXMiIyVbTs2Y6XW6cEF6MvhAiGKC8"
     ],
@@ -133,6 +134,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
       <head>
+        <meta name="google-site-verification" content="03qCkKQvBiUya7PxeevqSfiwZqxh98lc5uc2md7gVjA" />
         <meta name="google-site-verification" content="DI3Yaizs1_j78EF1QhR2H5E9r9qn8pFG3r_B-Y1g3i4" />
         <script
           type="application/ld+json"
