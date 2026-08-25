@@ -43,7 +43,7 @@ export default function Home() {
                   Premier Women's Healthcare in the Heart of Lahore
                 </h2>
                 <p className="text-slate-600 leading-relaxed text-base">
-                  Dr. Faiza Hafeez (FCPS Gynecology & Obstetrics) brings over 15 years of clinical excellence from leading medical institutions, including Hameed Latif and Ittefaq Hospital. Our clinic provides compassionate, confidential, and comprehensive care for mothers and women of all ages.
+                  Dr. Faiza Hafeez — Gynae and Obs Resident at <strong className="text-pink-700 font-semibold">Ittefaq Hospital Lahore (Trust)</strong>. Dedicated to providing compassionate, confidential, and comprehensive maternal healthcare, pregnancy ultrasound diagnostics, and pelvic health consultations for women of all ages.
                 </p>
               </div>
               

@@ -61,8 +61,8 @@ const Navbar = () => {
                     DR. FAIZA HAFEEZ
                   </span>
                 </div>
-                <span className="text-[10px] tracking-[0.22em] text-pink-600 font-bold uppercase ml-10 -mt-1">
-                  Consultant Gynecologist & Obstetrician
+                <span className="text-[10px] tracking-[0.18em] text-pink-600 font-bold uppercase ml-10 -mt-1">
+                  Gynae & Obs Resident | Ittefaq Hospital (Trust)
                 </span>
               </Link>
             </div>

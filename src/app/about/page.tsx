@@ -29,13 +29,13 @@ export default function AboutPage() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl -z-0 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-4">
           <span className="inline-block px-4 py-1.5 rounded-full bg-pink-900/60 text-pink-300 text-xs font-bold uppercase tracking-widest border border-pink-700/50">
-            About Consultant Gynecologist
+            Gynae & Obs Resident | Ittefaq Hospital (Trust) Lahore 👩‍⚕️
           </span>
           <h1 className="text-4xl md:text-6xl font-serif font-bold leading-tight">
             Dedicated to Women's Health & Safe Motherhood
           </h1>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Dr. Faiza Hafeez (FCPS Gynecology & Obstetrics) provides world-class maternal, reproductive, and gynecological care in Lahore.
+            Dr. Faiza Hafeez — Gynae and Obs Resident at Ittefaq Hospital Lahore (Trust), providing dedicated maternal, reproductive, and gynecological care in Lahore.
           </p>
         </div>
       </section>
@@ -46,17 +46,17 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-3">
-                <span className="text-pink-600 font-bold uppercase tracking-widest text-xs">Medical Background & Excellence</span>
+                <span className="text-pink-600 font-bold uppercase tracking-widest text-xs">Medical Background & Hospital Practice</span>
                 <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900">
-                  15+ Years of Clinical Leadership in Obstetrics & Gynecology
+                  Gynae & Obs Resident at Ittefaq Hospital (Trust), Lahore
                 </h2>
               </div>
               
               <p className="text-slate-600 leading-relaxed text-base">
-                Having served as a Senior Specialist at renowned institutions such as <strong className="text-slate-900">Hameed Latif Hospital</strong> and <strong className="text-slate-900">Ittefaq Hospital</strong> in Lahore, Dr. Faiza Hafeez brings extensive experience in handling high-risk deliveries, complex laparoscopic surgeries, and advanced fertility management.
+                Serving as a <strong className="text-slate-900">Gynae and Obs Resident at Ittefaq Hospital Lahore (Trust)</strong>, Dr. Faiza Hafeez brings rigorous clinical training and compassionate dedication to handling high-risk deliveries, comprehensive prenatal care, laparoscopic procedures, and maternal-fetal wellness.
               </p>
               <p className="text-slate-600 leading-relaxed text-base">
-                Our clinic was established to provide women with a comforting, highly private environment equipped with modern 3D/4D ultrasound diagnostics and personalized treatment protocols.
+                Our practice is committed to providing women with a comforting, highly private environment equipped with modern 3D/4D ultrasound diagnostics and personalized treatment protocols.
               </p>
               
               <div className="grid grid-cols-2 gap-6 pt-4 border-t border-pink-100">

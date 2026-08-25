@@ -126,6 +126,11 @@ const jsonLd = {
     "opens": "09:00",
     "closes": "19:00"
   },
+  "jobTitle": "Gynae and Obs Resident",
+  "hospitalAffiliation": {
+    "@type": "Hospital",
+    "name": "Ittefaq Hospital (Trust), Lahore"
+  },
   "medicalSpecialty": [
     "Gynecologic",
     "Obstetric",

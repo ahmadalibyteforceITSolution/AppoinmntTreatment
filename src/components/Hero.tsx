@@ -13,7 +13,7 @@ const Hero = () => {
         <div className="space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-100/80 text-pink-700 text-xs font-bold tracking-wider uppercase border border-pink-200 shadow-sm">
             <Star size={14} className="fill-pink-600 text-pink-600" />
-            Top Gynecologist & Obstetrics Specialist in Lahore
+            Gynae & Obs Resident | Ittefaq Hospital (Trust) Lahore 👩‍⚕️
           </div>
           
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-slate-900 leading-tight">
@@ -21,7 +21,7 @@ const Hero = () => {
           </h1>
           
           <p className="text-base md:text-lg text-slate-600 max-w-xl leading-relaxed font-normal">
-            Welcome to the specialized clinic of <strong className="text-slate-900 font-semibold">Dr. Faiza Hafeez (FCPS)</strong>. Dedicated to high-risk pregnancy care, infertility treatment, PCOS management, 3D ultrasound scans, and laparoscopic gynecological surgery in Lahore.
+            Welcome to the medical portal of <strong className="text-slate-900 font-semibold">Dr. Faiza Hafeez</strong> — Gynae and Obs Resident at <strong className="text-pink-700 font-semibold">Ittefaq Hospital Lahore (Trust)</strong>. Dedicated to high-risk pregnancy care, infertility treatment, PCOS management, 3D ultrasound scans, and obstetrics healthcare in Lahore.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -49,8 +49,8 @@ const Hero = () => {
           
           <div className="grid grid-cols-3 gap-6 pt-8 border-t border-pink-100">
             <div className="space-y-1">
-              <div className="text-2xl md:text-3xl font-bold text-pink-700">15+</div>
-              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Years Experience</div>
+              <div className="text-2xl md:text-3xl font-bold text-pink-700">Ittefaq Hospital</div>
+              <div className="text-[11px] text-slate-500 font-semibold uppercase tracking-wider">Trust Lahore</div>
             </div>
             <div className="space-y-1">
               <div className="text-2xl md:text-3xl font-bold text-pink-700">12,000+</div>
@@ -67,7 +67,7 @@ const Hero = () => {
           <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl border-8 border-white bg-pink-50">
             <Image 
               src="/faiza.jpg" 
-              alt="Dr. Faiza Hafeez - Consultant Gynecologist Lahore"
+              alt="Dr. Faiza Hafeez - Gynae and Obs Resident at Ittefaq Hospital Lahore Trust"
               fill
               className="object-cover scale-[1.05] origin-bottom"
               priority
@@ -80,8 +80,8 @@ const Hero = () => {
               <ShieldCheck size={26} />
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-900">FCPS Specialist</div>
-              <div className="text-xs text-slate-500 font-medium">PMC Certified Gynecologist</div>
+              <div className="text-sm font-bold text-slate-900">Ittefaq Hospital (Trust)</div>
+              <div className="text-xs text-slate-500 font-medium">Gynae & Obs Resident 👩‍⚕️</div>
             </div>
           </div>
           

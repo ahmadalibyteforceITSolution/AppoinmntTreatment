@@ -14,12 +14,12 @@ const Footer = () => {
                   DR. FAIZA HAFEEZ
                 </span>
               </div>
-              <span className="text-[10px] tracking-[0.2em] text-pink-400 font-bold uppercase ml-7 -mt-1">
-                Consultant Gynecologist & Obstetrician
+              <span className="text-[10px] tracking-[0.16em] text-pink-400 font-bold uppercase ml-7 -mt-1">
+                Gynae & Obs Resident | Ittefaq Hospital (Trust)
               </span>
             </Link>
             <p className="text-xs leading-relaxed mb-6 text-slate-400">
-              Providing compassionate, world-class gynecology, maternal healthcare, and reproductive wellness services in Lahore. Affiliated with top hospitals including Hameed Latif and Ittefaq Hospital.
+              Providing compassionate, specialized gynecology, maternal healthcare, and reproductive wellness services in Lahore. Gynae and Obs Resident at Ittefaq Hospital Lahore (Trust).
             </p>
           </div>
 
