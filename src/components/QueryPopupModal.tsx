@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { Phone, Mail, MessageSquare, X, Send, Loader2, Sparkles, Heart } from "lucide-react";
 import Swal from "sweetalert2";
@@ -10,6 +10,7 @@ export default function QueryPopupModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasClosedManuallyOnPage, setHasClosedManuallyOnPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const [formData, setFormData] = useState({
     phone: "",
@@ -21,15 +22,41 @@ export default function QueryPopupModal() {
   useEffect(() => {
     setHasClosedManuallyOnPage(false);
 
+    // Cancel any previous timer
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
     // Subtle 700ms timer so page finishes initial rendering smoothly before showing
-    const timer = setTimeout(() => {
+    timerRef.current = setTimeout(() => {
       setIsOpen(true);
     }, 700);
 
-    return () => clearTimeout(timer);
+    // ESC key closes modal
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        setIsOpen(false);
+        setHasClosedManuallyOnPage(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [pathname]);
 
-  const handleClose = () => {
+  const handleClose = (e?: React.MouseEvent | React.TouchEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
     setIsOpen(false);
     setHasClosedManuallyOnPage(true);
   };
@@ -47,13 +74,11 @@ export default function QueryPopupModal() {
 
     try {
       // 1. Post to API to save in DB and dispatch email to respective email (faizahafeez28@gmail.com)
-      const res = await fetch("/api/query", {
+      await fetch("/api/query", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      const data = await res.json();
 
       // 2. Send message directly to clinic number (+92 334 4280522) via WhatsApp
       const clinicNumber = "923344280522";
@@ -85,11 +110,9 @@ export default function QueryPopupModal() {
 
       // Reset & close
       setFormData({ phone: "", email: "", message: "" });
-      setIsOpen(false);
-      setHasClosedManuallyOnPage(true);
+      handleClose();
     } catch (err) {
       console.error("Query submission error:", err);
-      // Even if network fails, direct WhatsApp messaging to the number will open
       const clinicNumber = "923344280522";
       const text = `Hello Dr. Faiza Hafeez, I have an inquiry:\n\n*Phone:* ${formData.phone}\n*Email:* ${formData.email}\n*Query:* ${formData.message}`;
       window.open(
@@ -101,8 +124,7 @@ export default function QueryPopupModal() {
         "Your message is being sent directly to Dr. Faiza Hafeez on WhatsApp.",
         "info"
       );
-      setIsOpen(false);
-      setHasClosedManuallyOnPage(true);
+      handleClose();
     } finally {
       setIsLoading(false);
     }
@@ -113,11 +135,12 @@ export default function QueryPopupModal() {
       {/* Floating trigger pill if user dismissed the modal on this page */}
       {hasClosedManuallyOnPage && !isOpen && (
         <button
+          type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-24 right-6 z-40 bg-gradient-to-r from-pink-600 to-rose-600 text-white px-4 py-2.5 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-xs font-bold border-2 border-white/80 group"
+          className="fixed bottom-24 right-6 z-40 bg-gradient-to-r from-pink-600 to-rose-600 text-white px-4 py-2.5 rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 text-xs font-bold border-2 border-white/80 cursor-pointer"
           title="Open Query Form"
         >
-          <Sparkles size={15} className="animate-spin text-pink-200" />
+          <Sparkles size={15} className="animate-spin text-pink-200 pointer-events-none" />
           <span>Quick Query</span>
         </button>
       )}
@@ -131,24 +154,25 @@ export default function QueryPopupModal() {
           role="dialog"
         >
           <div
-            className="relative w-full max-w-lg bg-white rounded-3xl sm:rounded-[32px] shadow-2xl border border-pink-100 p-6 sm:p-8 overflow-hidden transform animate-in zoom-in-95 duration-200"
+            className="relative w-full max-w-lg bg-white rounded-3xl sm:rounded-[32px] shadow-2xl border border-pink-100 p-6 sm:p-8 overflow-hidden transform animate-in zoom-in-95 duration-200 z-50"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top decorative pink glow */}
             <div className="absolute -top-16 -right-16 w-36 h-36 bg-pink-200/50 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-16 -left-16 w-36 h-36 bg-rose-200/40 rounded-full blur-2xl pointer-events-none" />
 
-            {/* Close Button */}
+            {/* Close Button - High z-index, pointer-events-auto, explicit type="button" */}
             <button
+              type="button"
               onClick={handleClose}
-              className="absolute top-5 right-5 w-9 h-9 flex items-center justify-center rounded-full bg-slate-100 hover:bg-pink-100 text-slate-500 hover:text-pink-600 transition-colors z-10"
-              aria-label="Close query modal"
+              className="absolute top-5 right-5 w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-pink-100 text-slate-500 hover:text-pink-600 transition-all z-50 pointer-events-auto cursor-pointer hover:scale-110 active:scale-95 shadow-sm"
+              aria-label="Close modal"
             >
-              <X size={20} />
+              <X size={20} className="pointer-events-none text-slate-600" />
             </button>
 
-            {/* Header */}
-            <div className="text-left mb-6 relative z-10">
+            {/* Header - padding-right pr-12 to prevent any collision with close button */}
+            <div className="text-left mb-6 relative z-10 pr-12">
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-pink-50 border border-pink-100 text-pink-600 text-[11px] font-bold uppercase tracking-wider mb-2">
                 <Heart size={12} className="fill-pink-600" />
                 <span>Dr. Faiza Hafeez Clinic</span>
