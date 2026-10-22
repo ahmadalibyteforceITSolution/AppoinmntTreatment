@@ -4,7 +4,8 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
-import { Mail, Phone, MapPin, Loader2, Heart } from "lucide-react";
+import PageBanner from "@/components/PageBanner";
+import { Mail, Phone, MapPin, Loader2, Heart, Clock, MessageCircle, Send } from "lucide-react";
 import Swal from "sweetalert2";
 
 export default function ContactPage() {
@@ -40,125 +41,173 @@ export default function ContactPage() {
       Swal.fire({
         icon: 'success',
         title: 'Inquiry Sent!',
-        text: 'Thank you for reaching out to Dr. Faiza Hafeez Clinic. We will respond shortly.',
-        confirmButtonColor: '#db2777'
+        text: 'Thank you for contacting Dr. Faiza Hafeez Clinic. We will respond promptly.',
+        confirmButtonColor: '#00BDE0'
       });
       setFormData({ fullName: "", phone: "", message: "" });
-    } catch (error) {
-      Swal.fire("Notice", "Redirecting to WhatsApp to complete your message.", "info");
+    } catch {
+      Swal.fire({
+        icon: "info",
+        title: "Redirecting to WhatsApp",
+        text: "Please send your query directly via WhatsApp to our clinical reception.",
+        confirmButtonColor: "#00BDE0"
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <main className="bg-slate-50 min-h-screen">
+    <main className="bg-white min-h-screen">
       <Navbar />
       
-      <section className="pt-36 pb-20 bg-slate-950 text-white text-center relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="max-w-4xl mx-auto px-4 relative z-10 space-y-3">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-pink-900/60 text-pink-300 text-xs font-bold uppercase tracking-widest border border-pink-700/50">
-            Patient Services & Contact
-          </span>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold">Contact Dr. Faiza Hafeez Clinic</h1>
-          <p className="text-slate-300 text-sm max-w-xl mx-auto leading-relaxed">
-            Get in touch for consultations, high-risk pregnancy guidance, fertility counseling, or emergency hospital support in Lahore.
-          </p>
-        </div>
-      </section>
+      {/* ClinicMaster Style Page Banner */}
+      <PageBanner
+        badge="Patient Services & Inquiries"
+        title="Contact Dr. Faiza Hafeez Clinic"
+        description="Get in touch for appointments, high-risk pregnancy guidance, fertility counseling, or 24/7 delivery hospital support in Lahore."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Contact" }
+        ]}
+      />
 
-      <section className="py-20">
+      <section className="py-20 lg:py-28 bg-[#ecf5fb]/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="space-y-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            {/* Left Column: Contact Cards */}
+            <div className="lg:col-span-5 space-y-6">
               <div className="space-y-2">
-                <span className="text-pink-600 font-bold uppercase tracking-widest text-xs">Direct Support</span>
-                <h2 className="text-3xl font-serif font-bold text-slate-950">Reach Our Clinical Reception</h2>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#00a1be] bg-[#ccf2f9] px-3.5 py-1 rounded-full">
+                  Direct Clinical Support
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-bold text-[#031B4E]">
+                  Reach Our Clinical Desk
+                </h2>
               </div>
               
-              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-pink-100 shadow-sm">
-                <div className="w-12 h-12 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Phone card */}
+              <div className="flex items-start gap-5 p-6 rounded-3xl bg-white border border-slate-100 shadow-sm">
+                <div className="w-12 h-12 bg-[#ccf2f9] text-[#00BDE0] rounded-2xl flex items-center justify-center flex-shrink-0">
                   <Phone size={22} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Helpline & WhatsApp</h3>
-                  <p className="text-slate-600 font-semibold mt-1">+92 334 4280522</p>
-                  <p className="text-xs text-slate-500 mt-1">Direct reception line & 24/7 delivery helpline</p>
+                  <h3 className="font-bold text-[#031B4E] text-base">Direct Helpline & Phone</h3>
+                  <a href="tel:+923344280522" className="text-[#00BDE0] font-bold text-lg mt-0.5 block hover:underline">
+                    +92 334 4280522
+                  </a>
+                  <p className="text-xs text-[#566593] mt-1">Direct reception line & 24/7 delivery triage</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-pink-100 shadow-sm">
-                <div className="w-12 h-12 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Location card */}
+              <div className="flex items-start gap-5 p-6 rounded-3xl bg-white border border-slate-100 shadow-sm">
+                <div className="w-12 h-12 bg-[#0A3366]/10 text-[#0A3366] rounded-2xl flex items-center justify-center flex-shrink-0">
                   <MapPin size={22} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Clinic Location</h3>
-                  <p className="text-slate-600 text-sm mt-1">123 Medical Square, Gulberg III</p>
-                  <p className="text-slate-600 text-sm">Lahore, Punjab, Pakistan</p>
+                  <h3 className="font-bold text-[#031B4E] text-base">Hospital Affiliation</h3>
+                  <p className="text-sm font-semibold text-[#031B4E] mt-0.5">Ittefaq Hospital (Trust)</p>
+                  <p className="text-xs text-[#566593]">Model Town / Gulberg III, Lahore, Punjab, Pakistan</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-5 p-6 rounded-2xl bg-white border border-pink-100 shadow-sm">
-                <div className="w-12 h-12 bg-pink-50 text-pink-600 rounded-xl flex items-center justify-center flex-shrink-0">
+              {/* Email card */}
+              <div className="flex items-start gap-5 p-6 rounded-3xl bg-white border border-slate-100 shadow-sm">
+                <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center flex-shrink-0">
                   <Mail size={22} />
                 </div>
                 <div>
-                  <h3 className="font-bold text-slate-900 text-base">Email Inquiries</h3>
-                  <p className="text-slate-600 text-sm mt-1">Faizahafeez28@gmail.com</p>
-                  <p className="text-xs text-slate-500 mt-1">Response within 24 business hours</p>
+                  <h3 className="font-bold text-[#031B4E] text-base">Official Email</h3>
+                  <a href="mailto:faizahafeez28@gmail.com" className="text-xs sm:text-sm font-semibold text-[#0A3366] hover:text-[#00BDE0] transition-colors mt-0.5 block">
+                    faizahafeez28@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Working Hours */}
+              <div className="flex items-start gap-5 p-6 rounded-3xl bg-white border border-slate-100 shadow-sm">
+                <div className="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center flex-shrink-0">
+                  <Clock size={22} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#031B4E] text-base">Consultation Hours</h3>
+                  <p className="text-xs text-[#566593] mt-0.5">Mon - Sat: 09:00 AM - 07:00 PM</p>
+                  <p className="text-xs text-[#00a1be] font-bold mt-0.5">Emergency Labor: 24/7</p>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl border border-pink-100">
-              <h3 className="text-2xl font-serif font-bold text-slate-950 mb-6">Send an Inquiry</h3>
+            {/* Right Column: Contact Message Form */}
+            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] shadow-xl border border-slate-100 space-y-6">
+              <h3 className="text-2xl font-bold text-[#031B4E]">
+                Send an Online Message
+              </h3>
+              <p className="text-xs sm:text-sm text-[#566593]">
+                Leave your question or consultation query below. Our staff responds within 2-4 hours.
+              </p>
+
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Full Name</label>
-                  <input 
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#031B4E] mb-2">
+                    Your Name *
+                  </label>
+                  <input
                     required
+                    type="text"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    type="text" 
-                    className="w-full px-4 py-3.5 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none mt-1 font-medium" 
-                    placeholder="e.g. Sara Ali" 
+                    placeholder="e.g. Fatima Ali"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none text-sm font-medium text-[#031B4E] transition-all"
                   />
                 </div>
+
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Phone Number</label>
-                  <input 
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#031B4E] mb-2">
+                    Phone / WhatsApp *
+                  </label>
+                  <input
                     required
+                    type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    type="tel" 
-                    className="w-full px-4 py-3.5 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none mt-1 font-medium" 
-                    placeholder="+92 334 4280522" 
+                    placeholder="0334 1234567"
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none text-sm font-medium text-[#031B4E] transition-all"
                   />
                 </div>
+
                 <div>
-                  <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Message / Medical Inquiry</label>
-                  <textarea 
+                  <label className="block text-xs font-bold uppercase tracking-wider text-[#031B4E] mb-2">
+                    Your Message / Question *
+                  </label>
+                  <textarea
                     required
+                    rows={4}
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    rows={4} 
-                    className="w-full px-4 py-3.5 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none mt-1 resize-none font-medium" 
-                    placeholder="How can Dr. Faiza assist you?"
-                  ></textarea>
+                    placeholder="Describe your health query, ultrasound inquiry, or consultation request..."
+                    className="w-full px-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none text-sm font-medium text-[#031B4E] transition-all resize-none"
+                  />
                 </div>
-                <button 
-                  type="submit" 
+
+                <button
+                  type="submit"
                   disabled={isLoading}
-                  className="w-full flex items-center justify-center gap-2 py-4 bg-pink-600 text-white rounded-2xl font-bold text-base hover:bg-pink-700 transition-all shadow-lg shadow-pink-600/30 disabled:opacity-70"
+                  className="btn btn-primary w-full py-4 text-base font-bold shadow-xl flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {isLoading ? (
-                    <><Loader2 className="animate-spin" size={18} /> Sending...</>
+                    <>
+                      <Loader2 size={18} className="animate-spin" />
+                      <span>Sending Message...</span>
+                    </>
                   ) : (
-                    "Send Message"
+                    <>
+                      <Send size={18} />
+                      <span>Submit Inquiry</span>
+                    </>
                   )}
                 </button>
               </form>
@@ -172,4 +221,3 @@ export default function ContactPage() {
     </main>
   );
 }
-

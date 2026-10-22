@@ -1,65 +1,198 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
-  
-  --color-primary: #db2777;
-  --color-primary-dark: #be185d;
-  --color-secondary: #9d174d;
-  --color-accent: #f43f5e;
-  --color-rose-light: #fdf2f8;
-  --color-rose-soft: #fff1f2;
-  --color-luxury-gold: #d4af37;
-  --color-luxury-dark: #0f172a;
-  
-  --shadow-luxury: 0 10px 30px -10px rgba(219, 39, 119, 0.15);
-}
-
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f8fafc;
-  }
+  --primary: #00BDE0;
+  --primarydark: #00a1be;
+  --primary-rgb: 0, 189, 224;
+  --primarylight: #ccf2f9;
+  --body-color: #566593;
+  --heading-color: #031B4E;
+  --secondary: #0A3366;
+  --secondarydark: #031742;
+  --light: #ecf5fb;
+  --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-poppins);
+  color: var(--body-color);
+  background-color: #ffffff;
+  overflow-x: hidden;
 }
 
-/* Custom utilities for luxury women's health aesthetic */
-.glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(251, 207, 232, 0.4);
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-poppins);
 }
 
-.glass-rose {
-  background: rgba(253, 242, 248, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(244, 63, 94, 0.2);
+/* Custom clinicmaster utilities */
+.bg-light {
+  background-color: #ecf5fb;
 }
 
-.text-gradient {
-  background: linear-gradient(135deg, #db2777 0%, #9d174d 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.text-primary {
+  color: #00BDE0;
 }
 
-.text-gradient-gold {
-  background: linear-gradient(135deg, #d4af37 0%, #b48c1a 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.text-secondary {
+  color: #0A3366;
 }
 
-.rose-border {
-  border-image: linear-gradient(to right, #db2777, #f43f5e) 1;
+.text-heading {
+  color: #031B4E;
 }
 
+.text-body {
+  color: #566593;
+}
+
+.bg-primary {
+  background-color: #00BDE0;
+}
+
+.bg-secondary {
+  background-color: #0A3366;
+}
+
+.border-primary {
+  border-color: #00BDE0;
+}
+
+.border-secondary {
+  border-color: #0A3366;
+}
+
+/* Clinicmaster Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 9999px;
+  line-height: 1.25;
+  padding: 0.875rem 1.75rem;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: #00BDE0;
+  border-color: #00BDE0;
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(0, 189, 224, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: #00a1be;
+  border-color: #00a1be;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(0, 189, 224, 0.45);
+}
+
+.btn-secondary {
+  background-color: #0A3366;
+  border-color: #0A3366;
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(10, 51, 102, 0.25);
+}
+
+.btn-secondary:hover {
+  background-color: #031742;
+  border-color: #031742;
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  border-color: #00BDE0;
+  color: #00BDE0;
+}
+
+.btn-outline-primary:hover {
+  background-color: #00BDE0;
+  color: #ffffff;
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  border-color: #0A3366;
+  color: #0A3366;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #0A3366;
+  color: #ffffff;
+}
+
+.btn-white {
+  background-color: #ffffff;
+  border-color: #e2e8f0;
+  color: #0A3366;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-white:hover {
+  background-color: #f8fafc;
+  border-color: #00BDE0;
+  color: #00BDE0;
+}
+
+.btn-sm {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+}
+
+.btn-md {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.btn-lg {
+  padding: 1rem 2.25rem;
+  font-size: 1.05rem;
+}
+
+/* Glass & Card styles */
+.clinic-card {
+  background: #ffffff;
+  border: 1px solid rgba(10, 51, 102, 0.08);
+  border-radius: 1.5rem;
+  transition: all 0.35s ease;
+}
+
+.clinic-card:hover {
+  border-color: rgba(0, 189, 224, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(10, 51, 102, 0.12);
+  transform: translateY(-4px);
+}
+
+.clinic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 1rem;
+  border-radius: 9999px;
+  background-color: #ccf2f9;
+  color: #00a1be;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Custom scroll for tab strip */
+.custom-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #ecf5fb;
+  border-radius: 9999px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #00BDE0;
+  border-radius: 9999px;
+}

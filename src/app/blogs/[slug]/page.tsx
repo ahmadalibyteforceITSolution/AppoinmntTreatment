@@ -4,10 +4,10 @@ import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { blogs } from "@/data/blogs";
 import Image from "next/image";
-import { Calendar, User, ArrowLeft, Heart, ShieldCheck, ExternalLink } from "lucide-react";
+import { Calendar, User, ArrowLeft, Heart, ShieldCheck, ExternalLink, Clock, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import AdUnit from "../../../components/AdUnit";
+import AdUnit from "@/components/AdUnit";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -67,144 +67,177 @@ export default async function BlogPost({ params }: Props) {
     <main className="bg-white min-h-screen">
       <Navbar />
       
-      <article className="pt-36 pb-24">
+      {/* Top Banner with Breadcrumbs */}
+      <section className="pt-40 pb-12 bg-[#ecf5fb] border-b border-slate-200/80">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <Link href="/blogs" className="inline-flex items-center gap-2 text-pink-600 hover:text-pink-700 mb-10 transition-colors font-bold text-sm">
-            <ArrowLeft size={18} />
-            Back to All Articles
-          </Link>
-          
-          <div className="space-y-6 mb-10">
+          <nav className="flex items-center gap-2 text-xs font-semibold text-[#566593] mb-6">
+            <Link href="/" className="hover:text-[#00BDE0] transition-colors">Home</Link>
+            <ChevronRight size={13} className="text-[#00BDE0]" />
+            <Link href="/blogs" className="hover:text-[#00BDE0] transition-colors">Health Blog</Link>
+            <ChevronRight size={13} className="text-[#00BDE0]" />
+            <span className="text-[#031B4E] truncate max-w-xs">{blog.title}</span>
+          </nav>
+
+          <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <span className="bg-pink-100 text-pink-700 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-pink-200">
+              <span className="bg-[#ccf2f9] text-[#00a1be] text-xs font-bold uppercase tracking-wider px-3.5 py-1 rounded-full border border-[#00BDE0]/20">
                 {blog.category}
               </span>
-              <span className="text-slate-400 text-sm font-medium">{blog.readTime}</span>
+              <span className="text-xs font-semibold text-[#566593]">{blog.readTime}</span>
             </div>
-            <h1 className="text-3xl md:text-5xl font-serif font-bold text-slate-950 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#031B4E] leading-tight">
               {blog.title}
             </h1>
-            <div className="flex items-center gap-6 text-slate-500 border-y border-pink-100 py-4 text-xs font-medium">
-              <div className="flex items-center gap-2">
-                <Calendar size={15} className="text-pink-500" />
+            <div className="flex flex-wrap items-center gap-6 text-[#566593] pt-2 text-xs font-medium">
+              <div className="flex items-center gap-1.5">
+                <Calendar size={14} className="text-[#00BDE0]" />
                 <span>{blog.date}</span>
               </div>
-              <div className="flex items-center gap-2">
-                <User size={15} className="text-pink-500" />
-                <span>Dr. Faiza Hafeez (FCPS Gynecologist)</span>
+              <div className="flex items-center gap-1.5">
+                <User size={14} className="text-[#00BDE0]" />
+                <span>Dr. Faiza Hafeez (FCPS Resident • Ittefaq Hospital Trust)</span>
               </div>
             </div>
           </div>
-          
-          <div className="relative aspect-video rounded-[36px] overflow-hidden mb-12 shadow-2xl border-4 border-white bg-pink-50">
+        </div>
+      </section>
+
+      {/* Main Blog Article */}
+      <article className="py-12 lg:py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <div className="relative aspect-video rounded-3xl overflow-hidden mb-10 shadow-xl border border-slate-100 bg-[#ecf5fb]">
             <Image 
               src={blog.image} 
               alt={blog.title} 
               fill 
+              priority
               className="object-cover"
             />
           </div>
           
-          <div className="prose prose-lg max-w-none prose-pink text-slate-700">
-            <p className="text-lg md:text-xl text-pink-900 font-semibold mb-8 leading-relaxed italic bg-rose-50/60 p-6 rounded-2xl border border-pink-100">
+          <div className="space-y-6 text-[#566593] leading-relaxed text-base">
+            <p className="text-base sm:text-lg text-[#0A3366] font-semibold p-6 rounded-2xl bg-[#ecf5fb] border border-[#00BDE0]/20 leading-relaxed italic">
               {blog.excerpt}
             </p>
-            <div className="space-y-6 text-slate-700 leading-relaxed text-base">
-              <p>
-                Women's health requires specialized, empathetic care at every stage of life. 
-                As a consultant specializing in {blog.category.toLowerCase()}, I frequently treat patients who benefit immensely from early diagnosis, proper screening, and personalized lifestyle adjustments.
-              </p>
-              <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-950 mt-10 mb-4">Clinical Guidance & Key Steps</h2>
-              <p>
-                Understanding {blog.title.toLowerCase()} is vital for maintaining optimal reproductive and overall physical wellbeing.
-              </p>
-              <ul className="list-disc pl-6 space-y-2.5 my-6 text-sm font-medium">
-                <li>Early screening and routine checkups prevent major gynecological complications.</li>
-                <li>Hormonal balance and nutrition play a pivotal role in menstrual and reproductive wellness.</li>
-                <li>Continuous 3D/4D ultrasound monitoring ensures accurate fetal development tracking.</li>
-                <li>Consulting a qualified FCPS Gynecologist provides personalized treatment plans.</li>
-              </ul>
-              
-              <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-8 rounded-3xl border border-pink-200 my-10 space-y-2">
-                <div className="flex items-center gap-2 text-pink-700 font-serif font-bold text-xl">
-                  <Heart size={20} className="fill-pink-600 text-pink-600" />
-                  Dr. Faiza Hafeez's Medical Note
-                </div>
-                <p className="text-slate-700 text-sm leading-relaxed italic">
-                  "Prioritizing your maternal and pelvic health today ensures a safer, happier tomorrow for you and your family."
-                </p>
-              </div>
 
-              {/* Authoritative Medical Sources / External Backlink References */}
-              <div className="my-10 p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-3">
-                <div className="flex items-center gap-2 text-slate-900 font-semibold text-sm">
-                  <ShieldCheck size={18} className="text-pink-600" />
-                  Medical Literature & Authority References (E-E-A-T)
-                </div>
-                <p className="text-xs text-slate-500">
-                  This article is reviewed by Dr. Faiza Hafeez (FCPS) and referenced against peer-reviewed clinical guidelines:
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                  <a
-                    href="https://pubmed.ncbi.nlm.nih.gov/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
-                  >
-                    <ExternalLink size={12} className="text-pink-500" />
-                    <span>PubMed / National Library of Medicine</span>
-                  </a>
-                  <a
-                    href="https://www.who.int/health-topics/maternal-health"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
-                  >
-                    <ExternalLink size={12} className="text-pink-500" />
-                    <span>WHO Maternal & Child Health</span>
-                  </a>
-                  <a
-                    href="https://www.acog.org/womens-health"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
-                  >
-                    <ExternalLink size={12} className="text-pink-500" />
-                    <span>ACOG Clinical Practice Guidelines</span>
-                  </a>
-                  <a
-                    href="https://www.rcog.org.uk/for-the-public"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-pink-700 hover:text-pink-900 font-medium transition-colors"
-                  >
-                    <ExternalLink size={12} className="text-pink-500" />
-                    <span>RCOG Patient Information</span>
-                  </a>
-                </div>
-              </div>
+            <p>
+              Women's healthcare requires specialized, empathetic guidance at every distinct stage of life. 
+              As a resident specializing in obstetrics and gynecology at Ittefaq Hospital (Trust), Dr. Faiza Hafeez routinely counsels patients who benefit immensely from early diagnosis, proper ultrasound screening, and personalized medical adjustments.
+            </p>
 
-              {/* Ad Unit after content */}
-              <AdUnit slot="1234567890" />
-              
-              {/* Multiplex Ad Unit */}
-              <div className="mt-12 pt-8 border-t border-pink-100">
-                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Recommended Health Guides</h4>
-                <AdUnit slot="1788948754" format="autorelaxed" />
+            <h2 className="text-2xl sm:text-3xl font-bold text-[#031B4E] pt-4">
+              Clinical Insights & Evidence-Based Guidance
+            </h2>
+            <p>
+              Understanding {blog.title.toLowerCase()} is essential for safeguarding your maternal and reproductive wellbeing. Key clinical takeaways include:
+            </p>
+
+            <ul className="list-disc pl-6 space-y-2 text-sm text-[#031B4E] font-medium">
+              <li>Early screening and routine checkups prevent major gynecological complications.</li>
+              <li>Hormonal balance and balanced nutrition play a pivotal role in menstrual and reproductive wellness.</li>
+              <li>High-resolution 3D/4D ultrasound monitoring ensures accurate fetal development tracking.</li>
+              <li>Consulting a qualified FCPS Gynecologist provides individualized and confidential treatment protocols.</li>
+            </ul>
+            
+            {/* Doctor Note */}
+            <div className="p-7 rounded-3xl bg-[#0A3366] text-white my-8 space-y-2">
+              <div className="flex items-center gap-2 text-[#00BDE0] font-bold text-lg">
+                <Heart size={20} className="fill-[#00BDE0] text-[#00BDE0]" />
+                Dr. Faiza Hafeez's Clinical Note
+              </div>
+              <p className="text-slate-200 text-sm leading-relaxed italic">
+                "Prioritizing your maternal and pelvic health today ensures a safer, happier tomorrow for you and your newborn family."
+              </p>
+            </div>
+
+            {/* Authoritative E-E-A-T Medical Literature */}
+            <div className="my-8 p-6 rounded-3xl bg-[#ecf5fb] border border-slate-200/80 space-y-3">
+              <div className="flex items-center gap-2 text-[#031B4E] font-bold text-sm">
+                <ShieldCheck size={18} className="text-[#00BDE0]" />
+                Evidence-Based Medical Literature & Authority References (E-E-A-T)
+              </div>
+              <p className="text-xs text-[#566593]">
+                This article is verified by Dr. Faiza Hafeez (FCPS) and referenced against peer-reviewed clinical guidelines:
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                <a
+                  href="https://pubmed.ncbi.nlm.nih.gov/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#0A3366] hover:text-[#00BDE0] font-semibold transition-colors"
+                >
+                  <ExternalLink size={12} className="text-[#00BDE0]" />
+                  <span>PubMed / National Library of Medicine</span>
+                </a>
+                <a
+                  href="https://www.who.int/health-topics/maternal-health"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#0A3366] hover:text-[#00BDE0] font-semibold transition-colors"
+                >
+                  <ExternalLink size={12} className="text-[#00BDE0]" />
+                  <span>WHO Maternal & Child Health</span>
+                </a>
+                <a
+                  href="https://www.acog.org/womens-health"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#0A3366] hover:text-[#00BDE0] font-semibold transition-colors"
+                >
+                  <ExternalLink size={12} className="text-[#00BDE0]" />
+                  <span>ACOG Clinical Practice Guidelines</span>
+                </a>
+                <a
+                  href="https://www.rcog.org.uk/for-the-public"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#0A3366] hover:text-[#00BDE0] font-semibold transition-colors"
+                >
+                  <ExternalLink size={12} className="text-[#00BDE0]" />
+                  <span>RCOG Patient Information</span>
+                </a>
               </div>
             </div>
+
+            {/* Internal Linking to Services */}
+            <div className="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm space-y-3 my-8">
+              <h4 className="text-sm font-bold text-[#031B4E]">
+                Explore Related Clinical Services
+              </h4>
+              <div className="flex flex-wrap gap-2 pt-1">
+                <Link href="/services/high-risk-pregnancy" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#ecf5fb] text-[#0A3366] hover:bg-[#00BDE0] hover:text-white transition-colors">
+                  High-Risk Pregnancy
+                </Link>
+                <Link href="/services/infertility-treatment" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#ecf5fb] text-[#0A3366] hover:bg-[#00BDE0] hover:text-white transition-colors">
+                  Infertility Treatment
+                </Link>
+                <Link href="/services/pcos-management" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#ecf5fb] text-[#0A3366] hover:bg-[#00BDE0] hover:text-white transition-colors">
+                  PCOS Management
+                </Link>
+                <Link href="/services/3d-4d-ultrasound" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#ecf5fb] text-[#0A3366] hover:bg-[#00BDE0] hover:text-white transition-colors">
+                  3D/4D Ultrasound
+                </Link>
+                <Link href="/services/laparoscopic-surgery" className="text-xs font-semibold px-3 py-1.5 rounded-full bg-[#ecf5fb] text-[#0A3366] hover:bg-[#00BDE0] hover:text-white transition-colors">
+                  Laparoscopic Surgery
+                </Link>
+              </div>
+            </div>
+
+            <AdUnit slot="1234567890" />
           </div>
-          
-          <div className="mt-16 pt-10 border-t border-pink-100">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6 bg-slate-900 p-8 md:p-12 rounded-[36px] text-white shadow-2xl relative overflow-hidden">
-              <div className="space-y-2 text-center md:text-left">
-                <h4 className="text-2xl font-serif font-bold">Have Questions About Your Health?</h4>
-                <p className="text-slate-300 text-sm">Schedule a direct consultation with Dr. Faiza Hafeez in Lahore.</p>
-              </div>
-              <Link href="/appointments" className="px-8 py-4 bg-pink-600 text-white rounded-full font-bold text-sm hover:bg-pink-500 transition-all shadow-xl shadow-pink-600/30 whitespace-nowrap">
-                Book Consultation
-              </Link>
+
+          {/* Consultation CTA Banner */}
+          <div className="mt-12 bg-[#0A3366] p-8 sm:p-12 rounded-[36px] text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="space-y-2 text-center md:text-left">
+              <h4 className="text-2xl font-bold">Have Questions About Your Health?</h4>
+              <p className="text-slate-300 text-sm">Schedule a direct clinical consultation with Dr. Faiza Hafeez at Ittefaq Hospital Lahore.</p>
             </div>
+            <Link 
+              href="/appointments" 
+              className="btn btn-primary btn-lg whitespace-nowrap shadow-xl"
+            >
+              Book Consultation
+            </Link>
           </div>
         </div>
       </article>
@@ -214,4 +247,3 @@ export default async function BlogPost({ params }: Props) {
     </main>
   );
 }
-

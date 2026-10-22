@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, User, Phone, MessageSquare, Loader2, Heart } from "lucide-react";
+import { Calendar, User, Phone, MessageSquare, Loader2, Heart, Clock, Stethoscope, ArrowRight } from "lucide-react";
 import Swal from "sweetalert2";
 
 const BookingForm = () => {
@@ -11,6 +11,7 @@ const BookingForm = () => {
     phone: "",
     specialty: "High-Risk Pregnancy & Maternal Care",
     preferredDate: "",
+    preferredTime: "10:00 AM",
     message: ""
   });
 
@@ -30,51 +31,64 @@ const BookingForm = () => {
         body: JSON.stringify(formData),
       });
 
-      // Construct WhatsApp message
+      // Construct WhatsApp confirmation text
       const whatsappNumber = "923344280522";
-      const text = `Hello Dr. Faiza Hafeez, I would like to book a consultation:\n\n*Patient Name:* *${formData.fullName}*\n*Phone Number:* *${formData.phone}*\n*Service Needed:* *${formData.specialty}*\n*Preferred Date:* *${formData.preferredDate}*\n*Message/Notes:* *${formData.message || "N/A"}*`;
+      const text = `Hello Dr. Faiza Hafeez, I would like to book a consultation:\n\n*Patient Name:* *${formData.fullName}*\n*Contact:* *${formData.phone}*\n*Specialty:* *${formData.specialty}*\n*Preferred Date:* *${formData.preferredDate}*\n*Preferred Time:* *${formData.preferredTime}*\n*Notes:* *${formData.message || "None"}*`;
       const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
       
-      // Open WhatsApp in a new tab
       window.open(whatsappUrl, '_blank');
 
       Swal.fire({
         icon: 'success',
         title: 'Appointment Request Submitted!',
-        text: 'Thank you for contacting Dr. Faiza Hafeez Clinic. Our team will confirm your slot shortly.',
-        confirmButtonColor: '#db2777'
+        html: `Thank you <b>${formData.fullName}</b>.<br/>Dr. Faiza's clinical team will confirm your slot shortly via WhatsApp/Phone.`,
+        confirmButtonColor: '#00BDE0'
       });
+
       setFormData({
         fullName: "",
         phone: "",
         specialty: "High-Risk Pregnancy & Maternal Care",
         preferredDate: "",
+        preferredTime: "10:00 AM",
         message: ""
       });
-    } catch (error) {
-      console.error("Booking error:", error);
-      Swal.fire("Notice", "Redirecting to WhatsApp to complete your booking.", "info");
+    } catch {
+      Swal.fire({
+        icon: "info",
+        title: "Request Received",
+        text: "Please contact our clinic directly on WhatsApp at +92 334 4280522 to complete your booking.",
+        confirmButtonColor: "#00BDE0"
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <div className="bg-white p-8 md:p-12 rounded-[40px] shadow-2xl border border-pink-100 relative overflow-hidden">
-      <div className="flex items-center gap-3 mb-2">
-        <div className="w-8 h-8 rounded-full bg-pink-100 flex items-center justify-center text-pink-600">
-          <Heart size={18} className="fill-pink-600" />
+    <div className="bg-white p-8 sm:p-12 rounded-[36px] shadow-2xl border border-slate-100 relative overflow-hidden">
+      <div className="flex items-center gap-2.5 mb-2">
+        <div className="w-8 h-8 rounded-full bg-[#ccf2f9] flex items-center justify-center text-[#00BDE0]">
+          <Heart size={16} className="fill-[#00BDE0]" />
         </div>
-        <span className="text-xs font-bold uppercase tracking-widest text-pink-600">Online Slot Booking</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-[#00a1be]">
+          Online Slot Reservation
+        </span>
       </div>
-      <h3 className="text-3xl font-serif font-bold text-slate-900 mb-8">Schedule Your Consultation</h3>
+
+      <h3 className="text-2xl sm:text-3xl font-bold text-[#031B4E] mb-8">
+        Schedule Your Consultation
+      </h3>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Full Name */}
           <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Patient Full Name</label>
+            <label className="text-xs font-bold uppercase tracking-wider text-[#031B4E]">
+              Patient Full Name *
+            </label>
             <div className="relative">
-              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-pink-400" size={18} />
+              <User className="absolute left-4 top-1/2 -translate-y-1/2 text-[#566593]" size={18} />
               <input 
                 required
                 name="fullName"
@@ -82,91 +96,119 @@ const BookingForm = () => {
                 onChange={handleChange}
                 type="text" 
                 placeholder="e.g. Ayesha Khan"
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none transition-all font-medium"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none transition-all text-sm font-medium text-[#031B4E]"
               />
             </div>
           </div>
+
+          {/* Contact Number */}
           <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Contact Number</label>
+            <label className="text-xs font-bold uppercase tracking-wider text-[#031B4E]">
+              Phone / WhatsApp *
+            </label>
             <div className="relative">
-              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-pink-400" size={18} />
+              <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-[#566593]" size={18} />
               <input 
                 required
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
                 type="tel" 
-                placeholder="0334 4280522"
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none transition-all font-medium"
+                placeholder="0334 1234567"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none transition-all text-sm font-medium text-[#031B4E]"
               />
             </div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Specialty Service */}
           <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Select Specialty Service</label>
-            <select 
-              name="specialty"
-              value={formData.specialty}
-              onChange={handleChange}
-              className="w-full px-4 py-4 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none transition-all appearance-none font-medium text-slate-900"
-            >
-              <option value="High-Risk Pregnancy & Maternal Care">High-Risk Pregnancy & Maternal Care</option>
-              <option value="Gynecology Consultation">General Gynecology Consultation</option>
-              <option value="Infertility & Fertility Assessment">Infertility & Fertility Assessment</option>
-              <option value="PCOS / PCOD Management">PCOS / PCOD Management</option>
-              <option value="3D / 4D Fetal Anomaly Ultrasound">3D / 4D Fetal Anomaly Ultrasound</option>
-              <option value="Laparoscopic Surgery Consultation">Laparoscopic Surgery Consultation</option>
-              <option value="Pap Smear & Cervical Health">Pap Smear & Cervical Health</option>
-            </select>
-          </div>
-          <div className="space-y-2">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Preferred Date</label>
+            <label className="text-xs font-bold uppercase tracking-wider text-[#031B4E]">
+              Select Specialty / Service *
+            </label>
             <div className="relative">
-              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-pink-400" size={18} />
+              <Stethoscope className="absolute left-4 top-1/2 -translate-y-1/2 text-[#566593]" size={18} />
+              <select
+                name="specialty"
+                value={formData.specialty}
+                onChange={handleChange}
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none transition-all text-sm font-medium text-[#031B4E] appearance-none cursor-pointer"
+              >
+                <option value="High-Risk Pregnancy & Maternal Care">High-Risk Pregnancy & Maternal Care</option>
+                <option value="Gynecology & Pelvic Health">Gynecology & Pelvic Health</option>
+                <option value="Infertility & Reproductive Wellness">Infertility & Reproductive Wellness</option>
+                <option value="PCOS / PCOD & Hormonal Management">PCOS / PCOD & Hormonal Management</option>
+                <option value="3D / 4D Fetal Anomaly Ultrasound">3D / 4D Fetal Anomaly Ultrasound</option>
+                <option value="Laparoscopic & Minimally Invasive Surgery">Laparoscopic Surgery</option>
+                <option value="Cervical Screening & Pap Smears">Cervical Screening & Pap Smears</option>
+                <option value="Postnatal Care & Lactation Support">Postnatal Care & Lactation Support</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Preferred Date */}
+          <div className="space-y-2">
+            <label className="text-xs font-bold uppercase tracking-wider text-[#031B4E]">
+              Preferred Consultation Date *
+            </label>
+            <div className="relative">
+              <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 text-[#566593]" size={18} />
               <input 
                 required
                 name="preferredDate"
                 value={formData.preferredDate}
                 onChange={handleChange}
-                type="date" 
-                className="w-full pl-12 pr-4 py-4 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none transition-all font-medium text-slate-900"
+                type="date"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none transition-all text-sm font-medium text-[#031B4E]"
               />
             </div>
           </div>
         </div>
 
+        {/* Notes / Symptoms */}
         <div className="space-y-2">
-          <label className="text-xs font-bold uppercase tracking-widest text-slate-500 ml-1">Medical Symptoms / Notes (Optional)</label>
+          <label className="text-xs font-bold uppercase tracking-wider text-[#031B4E]">
+            Symptoms or Notes (Optional)
+          </label>
           <div className="relative">
-            <MessageSquare className="absolute left-4 top-5 text-pink-400" size={18} />
+            <MessageSquare className="absolute left-4 top-4 text-[#566593]" size={18} />
             <textarea 
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Briefly describe your symptoms or pregnancy week..."
               rows={3}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-rose-50/40 border border-pink-100 focus:ring-2 focus:ring-pink-500/20 focus:bg-white outline-none transition-all resize-none font-medium"
-            ></textarea>
+              placeholder="Tell us about your symptoms or medical background (e.g. 2nd trimester scan, irregular cycles, PCOS treatment)..."
+              className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-[#ecf5fb]/50 border border-slate-200 focus:border-[#00BDE0] focus:bg-white outline-none transition-all text-sm font-medium text-[#031B4E] resize-none"
+            />
           </div>
         </div>
 
-        <button 
+        {/* Submit Button */}
+        <button
           type="submit"
           disabled={isLoading}
-          className="w-full flex items-center justify-center gap-2 py-4 shadow-xl shadow-pink-600/30 bg-pink-600 text-white rounded-2xl font-bold text-lg hover:bg-pink-700 transition-all disabled:opacity-70"
+          className="btn btn-primary w-full py-4 text-base font-bold shadow-xl flex items-center justify-center gap-2 group cursor-pointer"
         >
           {isLoading ? (
-            <><Loader2 className="animate-spin" size={20} /> Booking...</>
+            <>
+              <Loader2 className="animate-spin" size={18} />
+              <span>Processing Request...</span>
+            </>
           ) : (
-            "Confirm Appointment Request"
+            <>
+              <span>Confirm Appointment Booking</span>
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </>
           )}
         </button>
+
+        <p className="text-center text-xs text-[#566593]">
+          Consultations take place at <strong className="text-[#031B4E]">Ittefaq Hospital (Trust), Lahore</strong>. We ensure complete confidentiality.
+        </p>
       </form>
     </div>
   );
 };
 
 export default BookingForm;
-

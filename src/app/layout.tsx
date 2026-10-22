@@ -1,20 +1,17 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 import QueryPopupModal from "@/components/QueryPopupModal";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-playfair",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-poppins",
+  display: "swap",
 });
 
 export const viewport = {
-  themeColor: "#db2777",
+  themeColor: "#00BDE0",
 };
 
 export const metadata: Metadata = {
@@ -57,6 +54,15 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://faizahafeez-bytely-team.vercel.app",
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/icon.svg",
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -72,9 +78,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://faizahafeez-bytely-team.vercel.app/faiza.jpg",
-        width: 800,
-        height: 1000,
+        url: "https://faizahafeez-bytely-team.vercel.app/template/images/about/img1.webp",
+        width: 1200,
+        height: 630,
         alt: "Dr. Faiza Hafeez - Consultant Gynecologist",
       },
     ],
@@ -95,7 +101,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Physician",
   "name": "Dr. Faiza Hafeez Clinic",
-  "image": "https://faizahafeez-bytely-team.vercel.app/faiza.jpg",
+  "image": "https://faizahafeez-bytely-team.vercel.app/template/images/about/img1.webp",
   "@id": "https://faizahafeez-bytely-team.vercel.app/#clinic",
   "url": "https://faizahafeez-bytely-team.vercel.app",
   "telephone": "+923344280522",
@@ -144,11 +150,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} h-full antialiased`}>
+    <html lang="en" className={`${poppins.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
-        <meta name="google-site-verification" content="03qCkKQvBiUya7PxeevqSfiwZqxh98lc5uc2md7gVjA" />
-        <meta name="google-site-verification" content="DI3Yaizs1_j78EF1QhR2H5E9r9qn8pFG3r_B-Y1g3i4" />
         <script
+          id="physician-jsonld"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
@@ -158,11 +163,10 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-white text-slate-900 selection:bg-pink-100 selection:text-pink-700">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#566593] selection:bg-[#ccf2f9] selection:text-[#0A3366]">
         {children}
         <QueryPopupModal />
       </body>
     </html>
   );
 }
-

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import PageBanner from "@/components/PageBanner";
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Dr. Faiza Hafeez Clinic Lahore",
@@ -16,26 +17,37 @@ export default function PrivacyPage() {
     <main className="bg-white min-h-screen">
       <Navbar />
 
-      <section className="pt-32 pb-20 bg-slate-50">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold mb-6">Privacy Policy</h1>
-          <p className="text-slate-600">Last updated: April 29, 2026</p>
-        </div>
-      </section>
+      <PageBanner
+        badge="Legal & Confidentiality"
+        title="Privacy Policy"
+        description="Patient confidentiality, data protection, and medical privacy standards at Dr. Faiza Hafeez Clinic."
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Privacy Policy" },
+        ]}
+      />
 
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto px-4 prose prose-slate">
-          <h2>1. Information We Collect</h2>
-          <p>We collect information you provide directly to us when you request an appointment, fill out a form, or communicate with us via WhatsApp.</p>
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-8 text-[#566593] text-sm sm:text-base leading-relaxed">
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold text-[#031B4E]">1. Information We Collect</h2>
+            <p>We collect clinical and contact information you provide directly to us when you request an appointment, fill out a consultation form, or communicate with our staff via WhatsApp or telephone.</p>
+          </div>
 
-          <h2>2. How We Use Your Information</h2>
-          <p>We use the information to schedule appointments, provide medical services, and communicate with you about your healthcare.</p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold text-[#031B4E]">2. How We Use Your Information</h2>
+            <p>We use this information exclusively to process consultation requests, maintain medical records, coordinate hospital appointments at Ittefaq Hospital Trust, and communicate with you about your healthcare.</p>
+          </div>
 
-          <h2>3. Medical Privacy (Patient Confidentiality)</h2>
-          <p>Your medical records and consultation details are strictly confidential and are protected under medical privacy laws. We do not share your health information without your explicit consent.</p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold text-[#031B4E]">3. Medical Privacy & Patient Confidentiality</h2>
+            <p>Your diagnostic records, ultrasound scans, and personal health disclosures are strictly confidential under PMDC medical ethics and healthcare privacy laws. We never share or sell personal health information to third-party advertisers.</p>
+          </div>
 
-          <h2>4. Contact Us</h2>
-          <p>If you have any questions about this Privacy Policy, please contact us at faizahafeez28@gmail.com.</p>
+          <div className="space-y-3">
+            <h2 className="text-xl font-bold text-[#031B4E]">4. Contact Us</h2>
+            <p>If you have any questions regarding our confidentiality practices, contact our clinical office at <a href="mailto:faizahafeez28@gmail.com" className="text-[#00BDE0] underline font-semibold">faizahafeez28@gmail.com</a>.</p>
+          </div>
         </div>
       </section>
 

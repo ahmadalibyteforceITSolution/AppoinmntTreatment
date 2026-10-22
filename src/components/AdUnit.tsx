@@ -27,12 +27,10 @@ export default function AdUnit({
     const pushAd = () => {
       if (!el) return;
 
-      // Do not push if already initialized by AdSense
       if (el.getAttribute("data-adsbygoogle-status")) {
         return;
       }
 
-      // Ensure the container has rendered with width > 0 to prevent "availableWidth=0" error
       const availableWidth = el.offsetWidth || el.parentElement?.offsetWidth || 0;
       if (availableWidth > 0) {
         try {
@@ -47,18 +45,16 @@ export default function AdUnit({
       }
     };
 
-    // Delay slightly to ensure layout computation has occurred
     const timer = setTimeout(pushAd, 100);
-
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className="flex justify-center my-8 w-full overflow-hidden min-w-[280px]">
+    <div className="flex justify-center w-full overflow-hidden">
       <ins
         ref={adRef}
         className="adsbygoogle"
-        style={style || { display: "block", minHeight: "90px", width: "100%" }}
+        style={style || { display: "block", width: "100%" }}
         data-ad-client="ca-pub-1888138480311828"
         data-ad-slot={slot}
         data-ad-format={format}
